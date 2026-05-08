@@ -852,7 +852,7 @@ body {
   <div class="nav-section">
     <div class="nav-section-label">نظرة عامة</div>
     <a class="nav-link" href="#hero"><span class="nav-icon">🏠</span>مقدمة المشروع</a>
-    <a class="nav-link" href="#architecture"><span class="nav-icon">🏗️</span>البنية التقنية</a>
+
   </div>
 
   <div class="nav-section">
@@ -903,100 +903,6 @@ body {
   </div>
 </section>
 
-<!-- ─── ARCHITECTURE ─── -->
-<section class="section section-alt" id="architecture">
-  <div class="section-heading">
-    <div class="section-num">🏗</div>
-    <div class="section-title-text">
-      <h2>البنية التقنية للمنصة</h2>
-      <p>الطبقات التقنية والتدفق الكامل من التطبيق إلى قاعدة البيانات</p>
-    </div>
-  </div>
-
-  <div class="arch-box">
-    <div class="arch-layer">
-      <div class="arch-layer-title">طبقة العميل — Client Layer</div>
-      <div class="arch-nodes">
-        <div class="arch-node blue"><span class="arch-node-icon">📱</span>Flutter App (iOS + Android)</div>
-        <div class="arch-node teal"><span class="arch-node-icon">🎨</span>Material Design 3 + RTL</div>
-        <div class="arch-node blue"><span class="arch-node-icon">🔄</span>Riverpod / Provider (State)</div>
-        <div class="arch-node teal"><span class="arch-node-icon">🌐</span>Dio HTTP Client</div>
-        <div class="arch-node blue"><span class="arch-node-icon">💾</span>Hive (Local Cache)</div>
-      </div>
-    </div>
-
-    <div class="arch-arrow-row"><span>↕</span></div>
-
-    <div class="arch-layer">
-      <div class="arch-layer-title">طبقة الاتصال الفوري — Real-Time Layer</div>
-      <div class="arch-nodes">
-        <div class="arch-node purple"><span class="arch-node-icon">📡</span>Agora RTC (Audio/Video)</div>
-        <div class="arch-node purple"><span class="arch-node-icon">⚡</span>Agora RTM (Chat + Events)</div>
-        <div class="arch-node purple"><span class="arch-node-icon">🎬</span>Agora RTC Stream</div>
-        <div class="arch-node green"><span class="arch-node-icon">🖥️</span>Agora Media Server</div>
-      </div>
-    </div>
-
-    <div class="arch-arrow-row"><span>↕</span></div>
-
-    <div class="arch-layer">
-      <div class="arch-layer-title">طبقة الـ API — Oracle APEX REST Layer</div>
-      <div class="arch-nodes">
-        <div class="arch-node orange"><span class="arch-node-icon">🔶</span>Oracle APEX 23.x</div>
-        <div class="arch-node orange"><span class="arch-node-icon">🌍</span>RESTful Web Services</div>
-        <div class="arch-node orange"><span class="arch-node-icon">🔐</span>JWT Authentication</div>
-        <div class="arch-node orange"><span class="arch-node-icon">📋</span>ORDS (Oracle REST Data Services)</div>
-      </div>
-    </div>
-
-    <div class="arch-arrow-row"><span>↕</span></div>
-
-    <div class="arch-layer">
-      <div class="arch-layer-title">طبقة البيانات — Oracle Database Layer</div>
-      <div class="arch-nodes">
-        <div class="arch-node red"><span class="arch-node-icon">🗄️</span>Oracle Database 19c+</div>
-        <div class="arch-node red"><span class="arch-node-icon">📊</span>Schemas & Tables</div>
-        <div class="arch-node red"><span class="arch-node-icon">⚙️</span>PL/SQL Procedures</div>
-        <div class="arch-node red"><span class="arch-node-icon">💿</span>Object Storage (Media)</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:32px">
-    <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-icon">📱</div>
-        <div class="tech-name">Flutter 3.x</div>
-        <div class="tech-role">واجهة المستخدم عبر iOS وAndroid من قاعدة كود واحدة. يدعم RTL عربي بشكل كامل مع أداء عالٍ.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🔶</div>
-        <div class="tech-name">Oracle APEX + ORDS</div>
-        <div class="tech-role">يوفر RESTful APIs بالكامل. كل endpoint يُعرَّف في APEX ويُعالَج بـ PL/SQL ويُرجع JSON.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🗄️</div>
-        <div class="tech-name">Oracle Database</div>
-        <div class="tech-role">قاعدة البيانات المركزية. تخزن المستخدمين، الدورات، الاختبارات، الشهادات، سجلات التعلم.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">📡</div>
-        <div class="tech-name">Agora SDK + Media Server</div>
-        <div class="tech-role">SDK متكامل لبث الصوت والصورة عالي الجودة مع زمن تأخير منخفض. يدعم الغرف الافتراضية والتحكم الكامل.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">⚡</div>
-        <div class="tech-name">Agora RTM Server</div>
-        <div class="tech-role">Agora RTM للمراسلة الفورية: الشات، الإشعارات، تحديث حالة المشاركين والاختبارات لحظياً.</div>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🔐</div>
-        <div class="tech-name">JWT Authentication</div>
-        <div class="tech-role">نظام توكن مشفر لإدارة الجلسات. Access Token (15 دقيقة) + Refresh Token (30 يوم).</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════════════════════ SCREENS SECTION ═══════════════════════════════ -->
 <section class="section" id="s-splash">
