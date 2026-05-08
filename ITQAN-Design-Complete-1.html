@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITQANتقان — وثيقة التصميم • إبراهيم الرعيني</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #0A6EBD;
+  --blue-dark: #054A82;
+  --blue-light: #E8F4FF;
+  --blue-mid: #1A8FE3;
+  --teal: #00C2CB;
+  --orange: #F5A623;
+  --green: #22C55E;
+  --red: #EF4444;
+  --purple: #7C3AED;
+  --bg: #F0F4F8;
+  --surface: #FFFFFF;
+  --surface2: #F7FAFC;
+  --text: #0F1923;
+  --text2: #4A5568;
+  --text3: #94A3B8;
+  --border: #E2E8F0;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.14);
+  --r: 14px;
+  --r-lg: 22px;
+  --phone-w: 320px;
+  --phone-h: 680px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+}
+
+/* ─── SIDEBAR NAV ─── */
+.sidebar {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: 260px;
+  background: var(--text);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #2a3a4a transparent;
+}
+.sidebar-logo {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.logo-mark {
+  font-size: 22px; font-weight: 900;
+  background: linear-gradient(135deg, var(--blue-mid), var(--teal));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+.logo-sub { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+
+.nav-section { padding: 16px 0 8px; }
+.nav-section-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); padding: 0 20px 8px;
+}
+.nav-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 20px; font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.5); cursor: pointer; text-decoration: none;
+  transition: all 0.15s; border-right: 2px solid transparent;
+}
+.nav-link:hover { color: white; background: rgba(255,255,255,0.04); }
+.nav-link.active { color: var(--teal); border-right-color: var(--teal); background: rgba(0,194,203,0.06); }
+.nav-icon { font-size: 15px; width: 20px; text-align: center; }
+
+/* ─── MAIN CONTENT ─── */
+.main { margin-right: 260px; min-height: 100vh; }
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(135deg, #0A1628 0%, #0D2A50 50%, #0A3870 100%);
+  padding: 60px 60px 50px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content:'';
+  position: absolute; top: -80px; left: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,194,203,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content:'';
+  position: absolute; bottom: -60px; right: 100px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(10,110,189,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,194,203,0.15); border: 1px solid rgba(0,194,203,0.3);
+  border-radius: 50px; padding: 6px 16px; font-size: 11px; font-weight: 700;
+  color: var(--teal); letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-size: 42px; font-weight: 900; color: white; line-height: 1.25;
+  margin-bottom: 14px; position: relative;
+}
+.hero-title span { background: linear-gradient(135deg, var(--teal), var(--blue-mid)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-desc { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 640px; line-height: 1.8; margin-bottom: 32px; }
+.hero-stats { display: flex; gap: 40px; }
+.hero-stat .n { font-size: 28px; font-weight: 900; color: white; line-height: 1; }
+.hero-stat .l { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+/* ─── SECTION ─── */
+.section { padding: 60px; }
+.section-alt { background: white; }
+
+.section-heading {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 40px;
+}
+.section-num {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--blue); color: white;
+  font-size: 16px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.section-num.teal { background: var(--teal); }
+.section-num.orange { background: var(--orange); }
+.section-num.purple { background: var(--purple); }
+.section-num.green { background: var(--green); }
+.section-title-text h2 { font-size: 26px; font-weight: 800; color: var(--text); }
+.section-title-text p { font-size: 14px; color: var(--text2); margin-top: 4px; line-height: 1.6; }
+
+/* ─── SCREEN GRID ─── */
+.screens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 32px;
+}
+
+/* ─── SCREEN CARD ─── */
+.screen-card {
+  background: white; border-radius: var(--r-lg);
+  box-shadow: var(--shadow); overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+}
+.screen-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.screen-card-header {
+  background: linear-gradient(135deg, #0A1628, #0D2A50);
+  padding: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.screen-num-badge {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: white; font-weight: 800; flex-shrink: 0;
+}
+.screen-card-header h3 { font-size: 15px; font-weight: 700; color: white; }
+.screen-card-header .sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.screen-type-badge {
+  margin-right: auto; background: rgba(0,194,203,0.2); color: var(--teal);
+  font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 50px;
+  border: 1px solid rgba(0,194,203,0.3);
+}
+.screen-type-badge.live { background: rgba(239,68,68,0.2); color: #F87171; border-color: rgba(239,68,68,0.3); }
+.screen-type-badge.both { background: rgba(124,58,237,0.2); color: #A78BFA; border-color: rgba(124,58,237,0.3); }
+
+/* Phone mockup inside card */
+.phone-wrap {
+  background: linear-gradient(160deg, #0D1B2E 0%, #122540 100%);
+  padding: 24px;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 420px;
+}
+
+.phone {
+  width: var(--phone-w);
+  height: var(--phone-h);
+  background: #F0F4F8;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1.5px rgba(255,255,255,0.15);
+  position: relative;
+  flex-shrink: 0;
+}
+.phone-notch {
+  width: 100px; height: 22px;
+  background: #0A1020; border-radius: 0 0 14px 14px;
+  margin: 0 auto; position: relative; z-index: 5;
+}
+.phone-inner {
+  height: calc(100% - 22px);
+  overflow-y: auto; overflow-x: hidden;
+  scrollbar-width: none; background: inherit;
+}
+.phone-inner::-webkit-scrollbar { display: none; }
+
+/* ─── DESCRIPTION BOX ─── */
+.desc-box { padding: 20px; }
+.desc-title { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.desc-text { font-size: 12px; color: var(--text2); line-height: 1.8; }
+
+.flow-steps { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.flow-step {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 11.5px; color: var(--text2);
+}
+.step-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--blue-light); color: var(--blue);
+  font-size: 9px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+/* ─── API TABLE ─── */
+.api-section { padding: 20px; border-top: 1px solid var(--border); }
+.api-section-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--text3); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.api-list { display: flex; flex-direction: column; gap: 6px; }
+.api-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.method-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 4px;
+  flex-shrink: 0; margin-top: 1px;
+}
+.GET { background: rgba(34,197,94,0.12); color: #16A34A; }
+.POST { background: rgba(10,110,189,0.12); color: var(--blue); }
+.PUT { background: rgba(245,166,35,0.12); color: #B45309; }
+.DELETE { background: rgba(239,68,68,0.12); color: var(--red); }
+.api-endpoint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--text); font-weight: 600; line-height: 1.4;
+}
+.api-desc { font-size: 10px; color: var(--text3); margin-top: 2px; }
+
+/* ─── FULL API REFERENCE ─── */
+.api-ref-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.api-group {
+  background: white; border-radius: var(--r); border: 1px solid var(--border);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.api-group-header {
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.api-group-icon { font-size: 20px; }
+.api-group-title { font-size: 14px; font-weight: 800; }
+.api-group-count {
+  margin-right: auto; background: var(--blue-light); color: var(--blue);
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 50px;
+}
+.api-group-body { padding: 14px 18px; }
+.api-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+}
+.api-row:last-child { border-bottom: none; }
+.api-info { flex: 1; }
+.api-path { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text); font-weight: 600; }
+.api-detail { font-size: 10.5px; color: var(--text2); margin-top: 3px; line-height: 1.5; }
+.api-params {
+  font-size: 9.5px; color: var(--text3); margin-top: 4px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─── TECH STACK ─── */
+.tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.tech-card {
+  background: white; border-radius: var(--r);
+  border: 1px solid var(--border); padding: 20px;
+  box-shadow: var(--shadow); text-align: center;
+}
+.tech-icon { font-size: 40px; margin-bottom: 10px; }
+.tech-name { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+.tech-role { font-size: 11px; color: var(--text2); line-height: 1.6; }
+
+/* ─── DATA FLOW ─── */
+.flow-diagram {
+  background: white; border-radius: var(--r-lg); border: 1px solid var(--border);
+  padding: 32px; box-shadow: var(--shadow); overflow: hidden;
+}
+.flow-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: wrap; margin-bottom: 12px;
+}
+.flow-node {
+  background: var(--blue-light); border: 2px solid var(--blue);
+  border-radius: 10px; padding: 12px 18px;
+  font-size: 12px; font-weight: 700; color: var(--blue);
+  text-align: center; min-width: 110px;
+}
+.flow-node.oracle { background: rgba(220,38,38,0.08); border-color: #DC2626; color: #DC2626; }
+.flow-node.apex { background: rgba(245,166,35,0.1); border-color: var(--orange); color: #92400E; }
+.flow-node.realtime { background: rgba(124,58,237,0.08); border-color: var(--purple); color: var(--purple); }
+.flow-node.flutter { background: rgba(0,194,203,0.1); border-color: var(--teal); color: #0E7490; }
+.flow-node.server { background: rgba(34,197,94,0.08); border-color: var(--green); color: #15803D; }
+.flow-arrow {
+  font-size: 20px; color: var(--text3); padding: 0 8px; flex-shrink: 0;
+}
+.flow-label {
+  font-size: 9px; color: var(--text3); text-align: center;
+  margin-top: 4px; font-weight: 600;
+}
+
+/* ─── INLINE PHONE SCREENS ─── */
+
+/* Status bar */
+.sb { display:flex; justify-content:space-between; padding:8px 14px 4px; font-size:10px; font-weight:700; position:sticky; top:0; z-index:10; }
+.sb-dark { background: linear-gradient(180deg, rgba(10,20,40,0.95), transparent); color:white; }
+.sb-light { background: white; color: var(--text); border-bottom: 1px solid var(--border); }
+
+/* Components shared */
+.btn-main {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color:white; border:none; border-radius:50px;
+  padding:12px 24px; font-size:13px; font-weight:700;
+  font-family:'Cairo',sans-serif; width:100%; cursor:pointer;
+  box-shadow: 0 4px 14px rgba(10,110,189,0.3);
+}
+.input-field {
+  width:100%; background:#F7FAFC; border:1.5px solid var(--border);
+  border-radius:10px; padding:11px 14px; font-size:13px;
+  font-family:'Cairo',sans-serif; color:var(--text); outline:none;
+}
+
+/* ─── SCREEN: SPLASH ─── */
+.splash-bg {
+  height:100%; background: linear-gradient(160deg, #071221 0%, #0A2040 50%, #0D3060 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:0; padding:30px; position:relative; overflow:hidden;
+}
+.splash-bg::before {
+  content:''; position:absolute;
+  width:280px; height:280px; border-radius:50%;
+  background: radial-gradient(circle, rgba(0,194,203,0.15) 0%, transparent 70%);
+  top:-50px; right:-50px;
+}
+.splash-logo-big { font-size:52px; font-weight:900; text-align:center; line-height:1; }
+.splash-logo-big span { background:linear-gradient(135deg,var(--teal),var(--blue-mid)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.splash-tagline { color:rgba(255,255,255,0.5); font-size:12px; text-align:center; margin:10px 0 40px; line-height:1.6; }
+.splash-dots { display:flex; gap:8px; justify-content:center; margin-bottom:30px; }
+.sdot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); }
+.sdot.active { background:var(--teal); width:22px; border-radius:4px; }
+
+/* ─── SCREEN: ONBOARDING ─── */
+.onboard-img {
+  height:200px; display:flex; align-items:center; justify-content:center;
+  font-size:80px; background:linear-gradient(135deg,var(--blue-light),#E0F2FE);
+}
+.onboard-body { padding:20px; }
+.onboard-step { font-size:11px; color:var(--text3); font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.onboard-title { font-size:20px; font-weight:800; line-height:1.4; margin:8px 0; }
+.onboard-desc { font-size:12px; color:var(--text2); line-height:1.7; }
+.onboard-dots { display:flex; gap:6px; justify-content:center; margin:16px 0 20px; }
+.odot { width:6px; height:6px; border-radius:50%; background:var(--border); }
+.odot.active { background:var(--blue); width:18px; border-radius:3px; }
+
+/* ─── SCREEN: LOGIN ─── */
+.login-header {
+  background:linear-gradient(160deg,#071221,#0A2A50);
+  padding:50px 24px 30px; text-align:center;
+}
+.login-logo { font-size:36px; font-weight:900; }
+.login-logo span { background:linear-gradient(135deg,var(--teal),var(--blue-mid)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.login-sub { color:rgba(255,255,255,0.5); font-size:12px; margin-top:6px; }
+.login-form { padding:24px; background:white; flex:1; }
+.form-label { font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px; display:block; }
+.form-group { margin-bottom:14px; }
+.social-btn {
+  width:100%; background:white; border:1.5px solid var(--border);
+  border-radius:10px; padding:11px; font-size:12px; font-weight:700;
+  font-family:'Cairo',sans-serif; cursor:pointer; display:flex;
+  align-items:center; justify-content:center; gap:8px; margin-bottom:8px;
+}
+.divider { display:flex; align-items:center; gap:10px; margin:14px 0; }
+.divider-line { flex:1; height:1px; background:var(--border); }
+.divider-text { font-size:11px; color:var(--text3); white-space:nowrap; }
+.forgot { text-align:left; font-size:11px; color:var(--blue); font-weight:600; margin-top:4px; }
+.register-link { text-align:center; font-size:12px; color:var(--text2); margin-top:16px; }
+.register-link span { color:var(--blue); font-weight:700; }
+
+/* ─── HOME SCREEN ─── */
+.home-header-bg {
+  background:linear-gradient(160deg,#0A6EBD 0%,#054A82 60%,#032A50 100%);
+  padding:40px 16px 24px; position:relative; overflow:hidden;
+}
+.home-header-bg::before { content:''; position:absolute; top:-40px; left:-40px; width:200px; height:200px; background:rgba(255,255,255,0.05); border-radius:50%; }
+.greeting-name { color:white; font-size:18px; font-weight:800; }
+.greeting-sub { color:rgba(255,255,255,0.6); font-size:11px; }
+.h-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.notif-btn { width:36px; height:36px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:17px; position:relative; }
+.notif-btn::after { content:'2'; position:absolute; top:3px; right:3px; background:var(--orange); width:14px; height:14px; border-radius:50%; font-size:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:700; }
+.h-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--orange),#E8890A); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; color:white; }
+.search-pill {
+  background:rgba(255,255,255,0.15); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.2); border-radius:50px;
+  padding:10px 16px; display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.6); font-size:12px;
+}
+
+.stats-bar { display:flex; gap:8px; padding:12px 14px; background:white; border-bottom:1px solid var(--border); }
+.stat-item { flex:1; background:var(--blue-light); border-radius:10px; padding:10px 6px; text-align:center; }
+.stat-item .sv { font-size:18px; font-weight:800; color:var(--blue); line-height:1; }
+.stat-item .sl { font-size:9px; color:var(--text2); margin-top:2px; }
+
+.sec-hdr { display:flex; justify-content:space-between; align-items:center; padding:14px 14px 8px; }
+.sec-ttl { font-size:14px; font-weight:800; }
+.sec-all { font-size:11px; color:var(--blue); font-weight:600; }
+
+.cats { display:flex; gap:6px; padding:0 14px 12px; overflow-x:auto; scrollbar-width:none; }
+.cats::-webkit-scrollbar { display:none; }
+.cat { padding:7px 14px; border-radius:50px; font-size:11px; font-weight:600; white-space:nowrap; font-family:'Cairo',sans-serif; }
+.cat.on { background:var(--blue); color:white; }
+.cat.off { background:white; color:var(--text2); border:1.5px solid var(--border); }
+
+.cc { display:flex; background:white; border-radius:12px; overflow:hidden; border:1px solid var(--border); margin:0 14px 10px; }
+.cc-thumb { width:88px; min-height:88px; display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0; }
+.cc-info { flex:1; padding:10px 12px; }
+.cc-cat { font-size:9px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; }
+.cc-name { font-size:11px; font-weight:700; line-height:1.4; margin:2px 0; }
+.cc-teacher { font-size:10px; color:var(--text2); }
+.cc-prog { display:flex; gap:8px; align-items:center; margin-top:8px; }
+.prog-bar { flex:1; height:3px; background:#EEF2F6; border-radius:50px; overflow:hidden; }
+.prog-fill { height:100%; border-radius:50px; background:linear-gradient(90deg,var(--blue),var(--teal)); }
+.prog-pct { font-size:9px; font-weight:700; color:var(--blue); }
+
+.live-strip { margin:0 14px 10px; background:linear-gradient(135deg,#1A2A4A,#0D1A30); border-radius:12px; overflow:hidden; border:1px solid rgba(239,68,68,0.3); }
+.live-top { display:flex; align-items:center; gap:8px; padding:10px 12px 8px; }
+.live-dot { width:6px; height:6px; background:var(--red); border-radius:50%; animation:pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.live-lbl { color:var(--red); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1px; }
+.live-title { color:white; font-size:11px; font-weight:700; flex:1; }
+.live-join { background:var(--red); color:white; border:none; border-radius:50px; padding:5px 12px; font-size:10px; font-weight:700; font-family:'Cairo',sans-serif; cursor:pointer; }
+.live-info { padding:0 12px 10px; display:flex; gap:12px; align-items:center; }
+.live-ava { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--teal)); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:white; }
+.live-teacher { font-size:10px; color:rgba(255,255,255,0.7); }
+.live-viewers { font-size:10px; color:rgba(255,255,255,0.4); margin-right:auto; }
+
+.bnav { display:flex; background:white; border-top:1px solid var(--border); padding:6px 0 10px; position:sticky; bottom:0; }
+.bni { flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; font-size:9px; cursor:pointer; }
+.bni.active { color:var(--blue); }
+.bni:not(.active) { color:var(--text3); }
+.bni-icon { font-size:20px; line-height:1; }
+
+/* ─── EXPLORE SCREEN ─── */
+.explore-header { background:white; padding:40px 14px 12px; border-bottom:1px solid var(--border); }
+.explore-title { font-size:18px; font-weight:800; margin-bottom:12px; }
+.filter-row { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; }
+.filter-row::-webkit-scrollbar { display:none; }
+.filter-chip { padding:7px 14px; border-radius:50px; font-size:11px; font-weight:600; white-space:nowrap; font-family:'Cairo',sans-serif; }
+.filter-chip.on { background:var(--blue); color:white; }
+.filter-chip.off { background:#F0F4F8; color:var(--text2); }
+
+.explore-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:14px; }
+.ec { background:white; border-radius:12px; overflow:hidden; border:1px solid var(--border); }
+.ec-img { height:80px; display:flex; align-items:center; justify-content:center; font-size:32px; }
+.ec-body { padding:8px 10px; }
+.ec-cat { font-size:8px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; }
+.ec-name { font-size:10px; font-weight:700; line-height:1.4; margin:2px 0; }
+.ec-teacher { font-size:9px; color:var(--text3); }
+.ec-meta { display:flex; justify-content:space-between; align-items:center; margin-top:6px; }
+.ec-stars { font-size:8px; color:var(--orange); }
+.ec-students { font-size:8px; color:var(--text3); }
+
+/* ─── COURSE DETAIL ─── */
+.cd-hero { height:180px; position:relative; display:flex; flex-direction:column; justify-content:flex-end; padding:16px; overflow:hidden; }
+.cd-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(160deg,#1A237E,#0A6EBD 50%,#00BCD4); z-index:0; }
+.cd-hero::after { content:'💻'; position:absolute; top:14px; left:14px; font-size:60px; opacity:0.12; z-index:1; }
+.cd-back { position:absolute; top:44px; right:14px; width:32px; height:32px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; color:white; z-index:2; }
+.cd-cat { color:rgba(255,255,255,0.6); font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; position:relative; z-index:2; }
+.cd-title { color:white; font-size:16px; font-weight:800; line-height:1.3; margin:4px 0; position:relative; z-index:2; }
+.cd-meta { display:flex; gap:8px; align-items:center; position:relative; z-index:2; }
+.cd-stars { font-size:10px; color:var(--orange); }
+.cd-cnt { color:rgba(255,255,255,0.5); font-size:9px; }
+
+.cd-inst { display:flex; align-items:center; gap:10px; padding:12px 14px; background:white; border-bottom:1px solid var(--border); }
+.cd-ava { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--teal)); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; color:white; }
+.cd-iname { font-size:12px; font-weight:700; }
+.cd-irole { font-size:9px; color:var(--text2); }
+.cd-follow { margin-right:auto; background:var(--blue-light); color:var(--blue); border:1.5px solid var(--blue); border-radius:50px; padding:5px 14px; font-size:10px; font-weight:700; font-family:'Cairo',sans-serif; }
+
+.prog-ring-wrap { display:flex; align-items:center; gap:14px; background:white; margin:10px 14px; border-radius:12px; padding:14px; border:1px solid var(--border); }
+.ring-stat .rp { font-size:22px; font-weight:800; color:var(--blue); }
+.ring-stat .rl { font-size:9px; color:var(--text2); }
+.ring-sub { display:flex; gap:12px; margin-top:6px; }
+.rs .rv { font-size:13px; font-weight:700; }
+.rs .rl2 { font-size:8px; color:var(--text3); }
+
+.cert-bar { display:flex; align-items:center; gap:10px; background:linear-gradient(135deg,var(--orange),#D4891A); border-radius:12px; padding:12px 14px; margin:0 14px 10px; }
+.cert-bar .ci { font-size:26px; }
+.cert-bar .ct { font-size:11px; font-weight:700; color:white; }
+.cert-bar .cs { font-size:9px; color:rgba(255,255,255,0.7); }
+.cert-bar .cp { font-size:18px; font-weight:800; color:white; margin-right:auto; }
+
+.tabs { display:flex; background:white; border-bottom:2px solid var(--border); padding:0 14px; gap:4px; overflow-x:auto; scrollbar-width:none; }
+.tabs::-webkit-scrollbar{display:none}
+.tab { padding:10px 12px; font-size:11px; font-weight:600; color:var(--text3); white-space:nowrap; border-bottom:2.5px solid transparent; margin-bottom:-2px; }
+.tab.on { color:var(--blue); border-bottom-color:var(--blue); }
+
+.curr { padding:10px 14px; }
+.wk-hdr { display:flex; justify-content:space-between; padding:8px 0; font-size:11px; font-weight:700; }
+.wk-cnt { font-size:9px; color:var(--text3); font-weight:400; }
+.lesson { display:flex; gap:10px; align-items:center; background:white; border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:6px; }
+.l-icon { width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+.l-icon.v { background:rgba(10,110,189,0.1); }
+.l-icon.q { background:rgba(245,166,35,0.1); }
+.l-icon.a { background:rgba(34,197,94,0.1); }
+.l-icon.lk { background:var(--bg); }
+.l-info .lt { font-size:11px; font-weight:700; }
+.l-info .lm { font-size:9px; color:var(--text3); margin-top:2px; }
+.l-status { font-size:14px; margin-right:auto; }
+
+.enroll-footer { padding:12px 14px 16px; background:white; border-top:1px solid var(--border); }
+
+/* ─── LIVE SESSION ─── */
+.ls-bg { background:#070E1A; height:100%; display:flex; flex-direction:column; }
+.ls-topbar { display:flex; justify-content:space-between; align-items:center; padding:14px 14px 10px; background:rgba(0,0,0,0.5); }
+.ls-live { display:flex; align-items:center; gap:6px; background:var(--red); padding:5px 12px; border-radius:50px; font-size:10px; font-weight:700; color:white; }
+.ls-time { color:rgba(255,255,255,0.6); font-size:11px; }
+.ls-close { color:rgba(255,255,255,0.5); font-size:18px; }
+
+.ls-video { height:180px; background:linear-gradient(135deg,#0D1B2E,#142440); position:relative; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; }
+.ls-teacher-av { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--teal)); display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:800; color:white; animation:glow 2s ease-in-out infinite; box-shadow:0 0 0 2px rgba(255,255,255,0.2),0 0 24px rgba(10,110,189,0.5); }
+@keyframes glow { 0%,100%{box-shadow:0 0 0 2px rgba(255,255,255,0.2),0 0 24px rgba(10,110,189,0.5)} 50%{box-shadow:0 0 0 4px rgba(255,255,255,0.08),0 0 40px rgba(10,110,189,0.8)} }
+.ls-tname { color:white; font-size:11px; font-weight:600; }
+.sp-ind { display:flex; gap:2px; align-items:flex-end; height:16px; }
+.sb2 { width:3px; background:var(--teal); border-radius:2px; animation:spk 0.6s ease-in-out infinite alternate; }
+.sb2:nth-child(1){height:6px;animation-delay:0s} .sb2:nth-child(2){height:13px;animation-delay:0.1s} .sb2:nth-child(3){height:9px;animation-delay:0.2s} .sb2:nth-child(4){height:14px;animation-delay:0.15s} .sb2:nth-child(5){height:7px;animation-delay:0.05s}
+@keyframes spk{from{transform:scaleY(0.4);opacity:0.5}to{transform:scaleY(1);opacity:1}}
+.ls-topic { position:absolute; bottom:8px; left:8px; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); padding:4px 8px; border-radius:6px; color:rgba(255,255,255,0.7); font-size:9px; }
+.ls-mini { position:absolute; top:8px; right:8px; display:flex; flex-direction:column; gap:3px; }
+.mc { width:48px; height:36px; border-radius:6px; border:1.5px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:14px; }
+
+.ls-tools { background:rgba(5,12,25,0.98); display:flex; gap:6px; padding:8px 10px; overflow-x:auto; scrollbar-width:none; border-top:1px solid rgba(255,255,255,0.06); }
+.ls-tools::-webkit-scrollbar{display:none}
+.lt { display:flex; flex-direction:column; align-items:center; gap:3px; padding:7px 10px; border-radius:8px; font-size:8px; font-weight:600; white-space:nowrap; min-width:48px; font-family:'Cairo',sans-serif; }
+.lt .li { font-size:18px; }
+.lt.on { background:rgba(10,110,189,0.25); color:var(--teal); border:1px solid rgba(0,194,203,0.25); }
+.lt.off { background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.35); border:1px solid rgba(255,255,255,0.08); }
+
+.ls-parts { display:flex; gap:8px; padding:8px 12px; background:rgba(5,12,25,0.98); overflow-x:auto; scrollbar-width:none; border-top:1px solid rgba(255,255,255,0.05); }
+.ls-parts::-webkit-scrollbar{display:none}
+.lp { display:flex; flex-direction:column; align-items:center; gap:3px; min-width:38px; }
+.lp-av { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:white; border:2px solid transparent; }
+.lp-av.sp { border-color:var(--teal); }
+.lp-nm { font-size:8px; color:rgba(255,255,255,0.4); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:38px; }
+
+.ls-chat { flex:1; padding:8px 12px; display:flex; flex-direction:column; gap:6px; min-height:130px; background:rgba(5,12,25,0.98); }
+.cm { display:flex; gap:6px; align-items:flex-start; }
+.cm-av { width:24px; height:24px; border-radius:50%; font-size:9px; font-weight:700; display:flex; align-items:center; justify-content:center; color:white; flex-shrink:0; }
+.cm-b { background:rgba(255,255,255,0.06); border-radius:0 8px 8px 8px; padding:6px 8px; max-width:200px; }
+.cm-u { font-size:9px; font-weight:700; color:var(--teal); margin-bottom:2px; }
+.cm-t { font-size:10px; color:rgba(255,255,255,0.75); line-height:1.4; }
+.cm.mine { flex-direction:row-reverse; }
+.cm.mine .cm-b { background:rgba(10,110,189,0.25); border-radius:8px 0 8px 8px; }
+.cm.mine .cm-u { color:var(--orange); }
+
+.ci-row { display:flex; gap:6px; padding:8px 12px; background:rgba(5,12,25,0.98); border-top:1px solid rgba(255,255,255,0.05); }
+.ci-in { flex:1; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:7px 12px; color:white; font-size:11px; font-family:'Cairo',sans-serif; outline:none; }
+.ci-in::placeholder{color:rgba(255,255,255,0.25)}
+.ci-send { width:32px; height:32px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; cursor:pointer; flex-shrink:0; }
+.ci-emoji { width:32px; height:32px; background:rgba(255,255,255,0.06); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; cursor:pointer; flex-shrink:0; }
+
+/* ─── VIDEO PLAYER ─── */
+.vp-player { height:180px; background:#000; position:relative; display:flex; align-items:center; justify-content:center; }
+.vp-play { width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,0.15); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; font-size:22px; }
+.vp-time { position:absolute; bottom:8px; left:10px; color:white; font-size:10px; background:rgba(0,0,0,0.6); padding:2px 6px; border-radius:4px; }
+.vp-full { position:absolute; bottom:8px; right:10px; color:white; font-size:16px; }
+.vp-bar { height:3px; background:rgba(255,255,255,0.2); position:relative; margin:0; }
+.vp-prog { height:100%; width:65%; background:var(--red); position:relative; }
+.vp-prog::after { content:''; position:absolute; right:-5px; top:-4px; width:11px; height:11px; background:var(--red); border-radius:50%; }
+
+.vp-body { padding:14px; background:white; }
+.vp-title { font-size:14px; font-weight:800; margin-bottom:4px; }
+.vp-meta { font-size:11px; color:var(--text2); display:flex; gap:12px; }
+.vp-actions { display:flex; gap:8px; margin-top:12px; }
+.vp-btn { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10px; color:var(--text2); }
+.vp-btn.active { color:var(--blue); }
+.vp-btn-icon { font-size:20px; }
+.vp-tabs { display:flex; border-top:1px solid var(--border); padding:0 14px; background:white; }
+.vp-tab { padding:10px 10px; font-size:10px; font-weight:600; color:var(--text3); border-bottom:2px solid transparent; }
+.vp-tab.on { color:var(--blue); border-bottom-color:var(--blue); }
+.vp-notes { padding:12px 14px; background:white; }
+.vp-note-item { display:flex; gap:8px; background:var(--bg); border-radius:8px; padding:10px; margin-bottom:8px; }
+.vp-note-time { font-size:9px; color:var(--blue); font-weight:700; font-family:'JetBrains Mono',monospace; flex-shrink:0; }
+.vp-note-text { font-size:10px; color:var(--text2); line-height:1.5; }
+
+/* ─── QUIZ ─── */
+.quiz-hdr { background:white; padding:40px 14px 14px; border-bottom:1px solid var(--border); }
+.quiz-steps { display:flex; gap:3px; margin-bottom:10px; }
+.qs { flex:1; height:3px; border-radius:50px; background:var(--bg); }
+.qs.done { background:var(--blue); }
+.qs.cur { background:var(--blue); opacity:0.4; }
+.quiz-row { display:flex; justify-content:space-between; align-items:center; }
+.quiz-num { font-size:11px; color:var(--text3); }
+.quiz-timer { display:flex; align-items:center; gap:5px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:50px; padding:4px 10px; font-size:11px; font-weight:700; color:var(--red); }
+.q-area { padding:14px; }
+.q-text { font-size:13px; font-weight:700; color:var(--text); line-height:1.6; margin-bottom:16px; }
+.opt { display:flex; gap:10px; align-items:center; background:white; border:2px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; cursor:pointer; }
+.opt.sel { border-color:var(--blue); background:var(--blue-light); }
+.opt.ok { border-color:var(--green); background:rgba(34,197,94,0.06); }
+.opt.no { border-color:var(--red); background:rgba(239,68,68,0.06); }
+.opt-r { width:18px; height:18px; border-radius:50%; border:2px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.opt.sel .opt-r { border-color:var(--blue); background:var(--blue); }
+.opt.ok .opt-r { border-color:var(--green); background:var(--green); color:white; font-size:9px; font-weight:700; }
+.opt.no .opt-r::after { content:'✕'; color:var(--red); font-size:9px; font-weight:700; }
+.opt-t { font-size:11px; font-weight:500; line-height:1.4; }
+.correct-msg { background:rgba(34,197,94,0.08); border:1.5px solid rgba(34,197,94,0.25); border-radius:10px; padding:10px 12px; margin-top:6px; }
+.correct-msg .ct { font-size:11px; font-weight:700; color:var(--green); margin-bottom:4px; }
+.correct-msg .cx { font-size:10px; color:var(--text2); line-height:1.5; }
+.q-nav { display:flex; gap:8px; padding:10px 14px; }
+.qb-back { flex:1; background:white; border:2px solid var(--border); border-radius:50px; padding:11px; font-size:12px; font-weight:700; font-family:'Cairo',sans-serif; cursor:pointer; color:var(--text2); }
+.qb-next { flex:2; background:linear-gradient(135deg,var(--blue),var(--blue-dark)); border:none; border-radius:50px; padding:11px; font-size:12px; font-weight:700; font-family:'Cairo',sans-serif; cursor:pointer; color:white; }
+
+/* ─── ASSIGNMENT ─── */
+.asgn-hdr { background:white; padding:40px 14px 14px; border-bottom:1px solid var(--border); }
+.asgn-title { font-size:16px; font-weight:800; margin-bottom:4px; }
+.asgn-meta { font-size:11px; color:var(--text2); display:flex; gap:12px; }
+.asgn-deadline { display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.15); border-radius:8px; padding:8px 12px; margin:12px 14px 0; }
+.asgn-deadline .di { font-size:18px; }
+.asgn-deadline .dt { font-size:11px; font-weight:700; color:var(--red); }
+.asgn-deadline .ds { font-size:9px; color:var(--text2); margin-top:1px; }
+.asgn-body { padding:14px; }
+.asgn-desc-box { background:var(--bg); border-radius:10px; padding:12px; margin-bottom:14px; }
+.asgn-desc-box .dl { font-size:11px; font-weight:700; margin-bottom:6px; }
+.asgn-desc-box .dt2 { font-size:11px; color:var(--text2); line-height:1.7; }
+.upload-area { border:2px dashed var(--border); border-radius:12px; padding:24px; text-align:center; margin-bottom:12px; }
+.upload-icon { font-size:36px; margin-bottom:8px; }
+.upload-text { font-size:12px; font-weight:700; margin-bottom:4px; }
+.upload-sub { font-size:10px; color:var(--text3); }
+.file-attached { display:flex; align-items:center; gap:10px; background:var(--blue-light); border:1.5px solid rgba(10,110,189,0.2); border-radius:10px; padding:10px 12px; margin-bottom:12px; }
+.file-icon { font-size:22px; }
+.file-name { font-size:11px; font-weight:700; color:var(--blue); }
+.file-size { font-size:9px; color:var(--text3); }
+.file-del { margin-right:auto; font-size:16px; color:var(--red); }
+
+/* ─── CERTIFICATE ─── */
+.cert-screen { padding:0 14px 20px; background:var(--bg); }
+.cert-card { background:white; border-radius:16px; overflow:hidden; margin-top:14px; box-shadow:var(--shadow); border:1px solid var(--border); }
+.cert-top { background:linear-gradient(135deg,#1A237E,#0A6EBD,#00BCD4); padding:20px; text-align:center; position:relative; overflow:hidden; }
+.cert-top::before { content:''; position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:rgba(255,255,255,0.08); border-radius:50%; }
+.cert-logo { font-size:13px; font-weight:900; color:rgba(255,255,255,0.7); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+.cert-main-icon { font-size:44px; }
+.cert-main-title { font-size:11px; font-weight:700; color:rgba(255,255,255,0.7); text-transform:uppercase; letter-spacing:2px; margin:8px 0 4px; }
+.cert-course-name { font-size:15px; font-weight:800; color:white; line-height:1.3; }
+.cert-body { padding:16px; }
+.cert-student-name { font-size:18px; font-weight:900; color:var(--text); text-align:center; margin-bottom:16px; }
+.cert-details { display:flex; flex-direction:column; gap:6px; }
+.cert-detail-row { display:flex; justify-content:space-between; font-size:11px; padding:6px 0; border-bottom:1px solid var(--bg); }
+.cert-detail-row .k { color:var(--text3); font-weight:500; }
+.cert-detail-row .v { color:var(--text); font-weight:700; }
+.cert-footer { display:flex; gap:8px; padding:12px 14px; }
+.cert-btn-share { flex:1; background:white; border:2px solid var(--border); border-radius:50px; padding:10px; font-size:11px; font-weight:700; font-family:'Cairo',sans-serif; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; }
+.cert-btn-dl { flex:1; background:linear-gradient(135deg,var(--blue),var(--blue-dark)); border:none; border-radius:50px; padding:10px; font-size:11px; font-weight:700; font-family:'Cairo',sans-serif; cursor:pointer; color:white; display:flex; align-items:center; justify-content:center; gap:6px; }
+.cert-verify { margin:0 14px 14px; background:rgba(34,197,94,0.06); border:1.5px solid rgba(34,197,94,0.2); border-radius:10px; padding:10px 12px; display:flex; align-items:center; gap:10px; }
+.cv-icon { font-size:22px; }
+.cv-text .ct { font-size:11px; font-weight:700; color:var(--green); }
+.cv-text .cs { font-size:9px; color:var(--text2); font-family:'JetBrains Mono',monospace; }
+
+/* ─── PROFILE ─── */
+.prof-hdr { height:120px; background:linear-gradient(135deg,var(--blue-dark),var(--blue),var(--teal)); position:relative; }
+.prof-ava { position:absolute; bottom:-28px; right:50%; transform:translateX(50%); width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--orange),#E8890A); display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:800; color:white; border:3px solid white; box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+.prof-info { text-align:center; padding:36px 14px 14px; background:white; border-bottom:1px solid var(--border); }
+.prof-name { font-size:16px; font-weight:800; }
+.prof-role { font-size:11px; color:var(--text2); margin-top:2px; }
+.prof-stats { display:flex; justify-content:center; gap:24px; margin-top:12px; }
+.ps .pv { font-size:16px; font-weight:800; color:var(--blue); }
+.ps .pl { font-size:9px; color:var(--text3); }
+.streak-bar { margin:12px 14px; background:linear-gradient(135deg,#FF6B35,#F7931E); border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px; }
+.streak-bar .si { font-size:28px; }
+.streak-bar .st { font-size:12px; font-weight:800; color:white; }
+.streak-bar .ss { font-size:9px; color:rgba(255,255,255,0.7); }
+.certs-scroll { display:flex; gap:8px; padding:0 14px 12px; overflow-x:auto; scrollbar-width:none; }
+.certs-scroll::-webkit-scrollbar{display:none}
+.cert-mini { min-width:130px; border-radius:10px; padding:12px; color:white; position:relative; overflow:hidden; flex-shrink:0; }
+.cert-mini::before { content:'🎓'; position:absolute; top:-5px; right:-5px; font-size:46px; opacity:0.12; }
+.cert-mini .cm-icon { font-size:16px; margin-bottom:6px; }
+.cert-mini .cm-name { font-size:9px; font-weight:700; line-height:1.4; }
+.cert-mini .cm-date { font-size:8px; opacity:0.65; margin-top:4px; }
+.achiev-item { display:flex; gap:12px; align-items:center; background:white; border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin:0 14px 8px; }
+.ai-icon { font-size:28px; }
+.ai-info .at { font-size:12px; font-weight:700; }
+.ai-info .as { font-size:10px; color:var(--text2); margin-top:1px; }
+.ai-pts { margin-right:auto; background:var(--blue-light); color:var(--blue); font-size:10px; font-weight:700; padding:3px 10px; border-radius:50px; }
+
+/* ─── NOTIFICATIONS ─── */
+.notif-header { background:white; padding:40px 14px 14px; border-bottom:1px solid var(--border); }
+.notif-title { font-size:18px; font-weight:800; }
+.notif-filters { display:flex; gap:6px; margin-top:10px; overflow-x:auto; scrollbar-width:none; }
+.notif-filters::-webkit-scrollbar{display:none}
+.nf { padding:6px 12px; border-radius:50px; font-size:10px; font-weight:600; white-space:nowrap; font-family:'Cairo',sans-serif; }
+.nf.on { background:var(--blue); color:white; }
+.nf.off { background:var(--bg); color:var(--text2); }
+
+.notif-item { display:flex; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); }
+.notif-item.unread { background:rgba(10,110,189,0.03); }
+.ni-icon { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+.ni-text .nt { font-size:12px; font-weight:600; line-height:1.4; }
+.ni-text .ns { font-size:10px; color:var(--text3); margin-top:2px; }
+.ni-badge { width:8px; height:8px; background:var(--blue); border-radius:50%; margin-top:4px; flex-shrink:0; }
+
+/* ─── SETTINGS ─── */
+.settings-list { padding:14px; }
+.setting-group { background:white; border-radius:12px; overflow:hidden; border:1px solid var(--border); margin-bottom:12px; }
+.setting-group-title { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text3); padding:10px 14px 4px; }
+.setting-item { display:flex; align-items:center; gap:12px; padding:12px 14px; border-bottom:1px solid var(--border); }
+.setting-item:last-child { border-bottom:none; }
+.si-icon-wrap { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.si-info .si-title { font-size:12px; font-weight:600; }
+.si-info .si-sub { font-size:10px; color:var(--text3); margin-top:1px; }
+.si-arrow { margin-right:auto; color:var(--text3); font-size:14px; }
+.toggle { width:36px; height:20px; border-radius:50px; position:relative; margin-right:auto; }
+.toggle.on { background:var(--blue); }
+.toggle.off { background:var(--border); }
+.toggle::after { content:''; position:absolute; top:2px; width:16px; height:16px; background:white; border-radius:50%; transition:right 0.2s; box-shadow:0 1px 3px rgba(0,0,0,0.2); }
+.toggle.on::after { right:2px; }
+.toggle.off::after { right:18px; }
+
+/* ─── API SECTION ─── */
+.api-full { padding: 60px; }
+.api-module {
+  margin-bottom: 40px;
+  background: white; border-radius: var(--r-lg);
+  border: 1px solid var(--border); overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.api-module-hdr {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 24px; border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+.api-module-icon { font-size: 26px; }
+.api-module-title { font-size: 16px; font-weight: 800; }
+.api-module-desc { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.api-module-count { margin-right: auto; background: var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
+.api-table { width: 100%; border-collapse: collapse; }
+.api-table th { background: var(--text); color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 700; text-align: right; padding: 10px 20px; letter-spacing: 1px; text-transform: uppercase; }
+.api-table th:first-child { text-align: center; width: 70px; }
+.api-table td { padding: 12px 20px; border-bottom: 1px solid var(--border); font-size: 12px; vertical-align: top; }
+.api-table tr:last-child td { border-bottom: none; }
+.api-table tr:hover td { background: var(--surface2); }
+.api-table td:first-child { text-align: center; }
+.api-table .endpoint-cell { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--text); }
+.api-table .desc-cell { color: var(--text2); line-height: 1.6; }
+.api-table .param-cell { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text3); }
+.api-table .auth-badge {
+  font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap;
+}
+.auth-req { background: rgba(10,110,189,0.1); color: var(--blue); }
+.auth-pub { background: rgba(34,197,94,0.1); color: #15803D; }
+.auth-admin { background: rgba(124,58,237,0.1); color: var(--purple); }
+
+/* method badges */
+.mb { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; padding:3px 8px; border-radius:5px; }
+.mb.GET{background:rgba(34,197,94,0.12);color:#16A34A}
+.mb.POST{background:rgba(10,110,189,0.12);color:var(--blue)}
+.mb.PUT{background:rgba(245,166,35,0.12);color:#B45309}
+.mb.DELETE{background:rgba(239,68,68,0.12);color:var(--red)}
+.mb.PATCH{background:rgba(124,58,237,0.12);color:var(--purple)}
+
+/* ─── ARCHITECTURE DIAGRAM ─── */
+.arch-box {
+  background: white; border-radius: var(--r-lg);
+  padding: 40px; border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.arch-layer {
+  background: var(--surface2); border-radius: var(--r);
+  padding: 20px 24px; margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+.arch-layer-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--text3); margin-bottom: 12px; }
+.arch-nodes { display: flex; gap: 10px; flex-wrap: wrap; }
+.arch-node {
+  display: flex; align-items: center; gap: 8px;
+  background: white; border-radius: 10px; padding: 10px 14px;
+  border: 1.5px solid var(--border); font-size: 12px; font-weight: 600;
+  box-shadow: var(--shadow-sm, 0 1px 4px rgba(0,0,0,0.06));
+}
+.arch-node-icon { font-size: 18px; }
+.arch-node.blue { border-color: var(--blue); background: var(--blue-light); color: var(--blue); }
+.arch-node.teal { border-color: var(--teal); background: rgba(0,194,203,0.08); color: #0E7490; }
+.arch-node.orange { border-color: var(--orange); background: rgba(245,166,35,0.08); color: #92400E; }
+.arch-node.red { border-color: #DC2626; background: rgba(220,38,38,0.06); color: #991B1B; }
+.arch-node.purple { border-color: var(--purple); background: rgba(124,58,237,0.08); color: var(--purple); }
+.arch-node.green { border-color: var(--green); background: rgba(34,197,94,0.08); color: #15803D; }
+.arch-arrow-row { display: flex; justify-content: center; margin: 4px 0; }
+.arch-arrow-row span { font-size: 20px; color: var(--text3); }
+
+/* ─── FOOTER ─── */
+.doc-footer {
+  background: var(--text);
+  padding: 40px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-brand .fb-name { font-size: 20px; font-weight: 900; background: linear-gradient(135deg,var(--teal),var(--blue-mid)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.footer-brand .fb-desc { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+.footer-stats { display: flex; gap: 32px; }
+.fs .fv { font-size: 22px; font-weight: 900; color: white; }
+.fs .fl { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+@media (max-width: 1100px) {
+  .sidebar { display: none; }
+  .main { margin-right: 0; }
+  .section, .hero, .api-full { padding: 32px 24px; }
+  .screens-grid { grid-template-columns: 1fr; }
+  .api-ref-grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">ITQANتقان</div>
+    <div class="logo-sub">وثيقة التصميم • إبراهيم الرعيني</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">نظرة عامة</div>
+    <a class="nav-link" href="#hero"><span class="nav-icon">🏠</span>مقدمة المشروع</a>
+    <a class="nav-link" href="#architecture"><span class="nav-icon">🏗️</span>البنية التقنية</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">شاشات المستخدم</div>
+    <a class="nav-link" href="#s-splash"><span class="nav-icon">🌟</span>Splash & Onboarding</a>
+    <a class="nav-link" href="#s-auth"><span class="nav-icon">🔐</span>تسجيل الدخول والتسجيل</a>
+    <a class="nav-link" href="#s-home"><span class="nav-icon">🏠</span>الشاشة الرئيسية</a>
+    <a class="nav-link" href="#s-explore"><span class="nav-icon">🔍</span>استكشاف الدورات</a>
+    <a class="nav-link" href="#s-course"><span class="nav-icon">📚</span>تفاصيل الدورة</a>
+    <a class="nav-link" href="#s-video"><span class="nav-icon">▶️</span>مشغل الفيديو</a>
+    <a class="nav-link" href="#s-live"><span class="nav-icon">📡</span>الجلسة المباشرة</a>
+    <a class="nav-link" href="#s-quiz"><span class="nav-icon">📝</span>الاختبارات</a>
+    <a class="nav-link" href="#s-assignment"><span class="nav-icon">📤</span>الواجبات</a>
+    <a class="nav-link" href="#s-cert"><span class="nav-icon">🏆</span>الشهادات</a>
+    <a class="nav-link" href="#s-profile"><span class="nav-icon">👤</span>الملف الشخصي</a>
+    <a class="nav-link" href="#s-notif"><span class="nav-icon">🔔</span>الإشعارات</a>
+    <a class="nav-link" href="#s-settings"><span class="nav-icon">⚙️</span>الإعدادات</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">التوثيق التقني</div>
+    <a class="nav-link" href="#api-auth"><span class="nav-icon">🔑</span>Auth APIs</a>
+    <a class="nav-link" href="#api-courses"><span class="nav-icon">📖</span>Courses APIs</a>
+    <a class="nav-link" href="#api-live"><span class="nav-icon">📡</span>Live APIs</a>
+    <a class="nav-link" href="#api-assess"><span class="nav-icon">📊</span>Assessment APIs</a>
+    <a class="nav-link" href="#api-user"><span class="nav-icon">👤</span>User APIs</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════ -->
+<div class="main">
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-badge">📱 توثيق تصميم التطبيق</div>
+  <h1 class="hero-title">ITQANتقان<br><span>منصة التعلم الذكي</span></h1>
+  <p class="hero-desc">
+    منصة تعليمية متكاملة تجمع بين التعلم المتزامن (المباشر) وغير المتزامن، مبنية بـ Flutter
+    مع Oracle APEX REST APIs وOracle Database، تدعم البث الحي بجودة عالية وتجربة مستخدم سلسة.
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n">13</div><div class="l">شاشة مصممة</div></div>
+    <div class="hero-stat"><div class="n">58+</div><div class="l">RESTful API</div></div>
+    <div class="hero-stat"><div class="n">3</div><div class="l">أنماط تعلم</div></div>
+    <div class="hero-stat"><div class="n">Flutter</div><div class="l">إطار التطوير</div></div>
+  </div>
+</section>
+
+<!-- ─── ARCHITECTURE ─── -->
+<section class="section section-alt" id="architecture">
+  <div class="section-heading">
+    <div class="section-num">🏗</div>
+    <div class="section-title-text">
+      <h2>البنية التقنية للمنصة</h2>
+      <p>الطبقات التقنية والتدفق الكامل من التطبيق إلى قاعدة البيانات</p>
+    </div>
+  </div>
+
+  <div class="arch-box">
+    <div class="arch-layer">
+      <div class="arch-layer-title">طبقة العميل — Client Layer</div>
+      <div class="arch-nodes">
+        <div class="arch-node blue"><span class="arch-node-icon">📱</span>Flutter App (iOS + Android)</div>
+        <div class="arch-node teal"><span class="arch-node-icon">🎨</span>Material Design 3 + RTL</div>
+        <div class="arch-node blue"><span class="arch-node-icon">🔄</span>Riverpod / Provider (State)</div>
+        <div class="arch-node teal"><span class="arch-node-icon">🌐</span>Dio HTTP Client</div>
+        <div class="arch-node blue"><span class="arch-node-icon">💾</span>Hive (Local Cache)</div>
+      </div>
+    </div>
+
+    <div class="arch-arrow-row"><span>↕</span></div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-title">طبقة الاتصال الفوري — Real-Time Layer</div>
+      <div class="arch-nodes">
+        <div class="arch-node purple"><span class="arch-node-icon">📡</span>Agora RTC (Audio/Video)</div>
+        <div class="arch-node purple"><span class="arch-node-icon">⚡</span>Agora RTM (Chat + Events)</div>
+        <div class="arch-node purple"><span class="arch-node-icon">🎬</span>Agora RTC Stream</div>
+        <div class="arch-node green"><span class="arch-node-icon">🖥️</span>Agora Media Server</div>
+      </div>
+    </div>
+
+    <div class="arch-arrow-row"><span>↕</span></div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-title">طبقة الـ API — Oracle APEX REST Layer</div>
+      <div class="arch-nodes">
+        <div class="arch-node orange"><span class="arch-node-icon">🔶</span>Oracle APEX 23.x</div>
+        <div class="arch-node orange"><span class="arch-node-icon">🌍</span>RESTful Web Services</div>
+        <div class="arch-node orange"><span class="arch-node-icon">🔐</span>JWT Authentication</div>
+        <div class="arch-node orange"><span class="arch-node-icon">📋</span>ORDS (Oracle REST Data Services)</div>
+      </div>
+    </div>
+
+    <div class="arch-arrow-row"><span>↕</span></div>
+
+    <div class="arch-layer">
+      <div class="arch-layer-title">طبقة البيانات — Oracle Database Layer</div>
+      <div class="arch-nodes">
+        <div class="arch-node red"><span class="arch-node-icon">🗄️</span>Oracle Database 19c+</div>
+        <div class="arch-node red"><span class="arch-node-icon">📊</span>Schemas & Tables</div>
+        <div class="arch-node red"><span class="arch-node-icon">⚙️</span>PL/SQL Procedures</div>
+        <div class="arch-node red"><span class="arch-node-icon">💿</span>Object Storage (Media)</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px">
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">📱</div>
+        <div class="tech-name">Flutter 3.x</div>
+        <div class="tech-role">واجهة المستخدم عبر iOS وAndroid من قاعدة كود واحدة. يدعم RTL عربي بشكل كامل مع أداء عالٍ.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔶</div>
+        <div class="tech-name">Oracle APEX + ORDS</div>
+        <div class="tech-role">يوفر RESTful APIs بالكامل. كل endpoint يُعرَّف في APEX ويُعالَج بـ PL/SQL ويُرجع JSON.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🗄️</div>
+        <div class="tech-name">Oracle Database</div>
+        <div class="tech-role">قاعدة البيانات المركزية. تخزن المستخدمين، الدورات، الاختبارات، الشهادات، سجلات التعلم.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">📡</div>
+        <div class="tech-name">Agora SDK + Media Server</div>
+        <div class="tech-role">SDK متكامل لبث الصوت والصورة عالي الجودة مع زمن تأخير منخفض. يدعم الغرف الافتراضية والتحكم الكامل.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">⚡</div>
+        <div class="tech-name">Agora RTM Server</div>
+        <div class="tech-role">Agora RTM للمراسلة الفورية: الشات، الإشعارات، تحديث حالة المشاركين والاختبارات لحظياً.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔐</div>
+        <div class="tech-name">JWT Authentication</div>
+        <div class="tech-role">نظام توكن مشفر لإدارة الجلسات. Access Token (15 دقيقة) + Refresh Token (30 يوم).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SCREENS SECTION ═══════════════════════════════ -->
+<section class="section" id="s-splash">
+  <div class="section-heading">
+    <div class="section-num">1</div>
+    <div class="section-title-text">
+      <h2>Splash Screen & Onboarding</h2>
+      <p>أول شاشة يراها المستخدم عند فتح التطبيق، ثم مرحلة التعريف بالمنصة للمستخدمين الجدد</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+
+    <!-- SPLASH -->
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">1</div>
+        <div><h3>Splash Screen</h3><div class="sub">شاشة البداية والتحميل</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="splash-bg" style="height:658px">
+              <div style="font-size:64px;margin-bottom:12px;animation:pulse 2s infinite">🎓</div>
+              <div class="splash-logo-big"><span>ITQANتقان</span></div>
+              <div class="splash-tagline">منصة التعلم الذكي<br>تعلّم بلا حدود، أينما كنت</div>
+              <div style="width:48px;height:48px;border-radius:50%;border:3px solid rgba(255,255,255,0.2);border-top-color:var(--teal);animation:spin 1s linear infinite;margin-bottom:20px"></div>
+              <div style="color:rgba(255,255,255,0.3);font-size:10px;letter-spacing:2px;text-transform:uppercase">جاري التحميل...</div>
+              <div style="position:absolute;bottom:30px;color:rgba(255,255,255,0.2);font-size:10px">v2.1.0 • Powered by Oracle</div>
+              <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>عرض شاشة البداية مع اللوغو والـ Loading animation</div>
+          <div class="flow-step"><div class="step-dot">2</div>التحقق من وجود Token مخزن محلياً في Secure Storage</div>
+          <div class="flow-step"><div class="step-dot">3</div>إذا وُجد Token صالح → انتقال مباشر للـ Home Screen</div>
+          <div class="flow-step"><div class="step-dot">4</div>إذا كان المستخدم جديداً → انتقال لـ Onboarding</div>
+          <div class="flow-step"><div class="step-dot">5</div>إذا انتهت صلاحية Token → Refresh أو إعادة للـ Login</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/refresh-token</div><div class="api-desc">تجديد الـ Access Token باستخدام Refresh Token المخزن</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/app/config</div><div class="api-desc">إعدادات التطبيق، روابط الـ CDN، أحدث الإشعارات العامة</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ONBOARDING -->
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">2</div>
+        <div><h3>Onboarding</h3><div class="sub">تعريف المستخدم الجديد بالمنصة</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="onboard-img">🎓</div>
+            <div class="onboard-body">
+              <div class="onboard-step">الخطوة 1 من 3</div>
+              <div class="onboard-title">تعلّم بأسلوبك الخاص</div>
+              <div class="onboard-desc">سواء فضّلت الجلسات المباشرة مع المعلمين أو التعلم بوتيرتك الخاصة، ITQANتقان يوفر لك كلا الخيارين في مكان واحد.</div>
+              <div class="onboard-dots">
+                <div class="odot active"></div><div class="odot"></div><div class="odot"></div>
+              </div>
+              <button class="btn-main">التالي</button>
+              <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--text3)">تخطي →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>3 شرائح تتحرك بـ PageView مع مؤشر النقاط</div>
+          <div class="flow-step"><div class="step-dot">2</div>زر "تخطي" يأخذ المستخدم مباشرة لشاشة التسجيل</div>
+          <div class="flow-step"><div class="step-dot">3</div>في الشريحة الأخيرة يظهر زر "ابدأ الآن"</div>
+          <div class="flow-step"><div class="step-dot">4</div>يُخزن محلياً أن المستخدم رأى الـ Onboarding</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/onboarding/slides</div><div class="api-desc">محتوى شرائح الـ Onboarding (العنوان، الوصف، الصورة) — يُمكّن تعديلها من لوحة APEX</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUTH -->
+<section class="section section-alt" id="s-auth">
+  <div class="section-heading">
+    <div class="section-num teal">2</div>
+    <div class="section-title-text">
+      <h2>المصادقة — Auth Screens</h2>
+      <p>تسجيل الدخول، إنشاء حساب، واسترجاع كلمة المرور</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">3</div>
+        <div><h3>تسجيل الدخول</h3><div class="sub">Login Screen</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="login-header">
+              <div class="login-logo"><span>ITQANتقان</span></div>
+              <div class="login-sub">مرحباً بعودتك 👋</div>
+            </div>
+            <div class="login-form">
+              <div class="form-group">
+                <label class="form-label">البريد الإلكتروني</label>
+                <input class="input-field" placeholder="example@email.com" type="email" value="ibrahim@itqan.edu">
+              </div>
+              <div class="form-group">
+                <label class="form-label">كلمة المرور</label>
+                <input class="input-field" placeholder="••••••••" type="password" value="••••••••">
+                <div class="forgot">نسيت كلمة المرور؟</div>
+              </div>
+              <button class="btn-main" style="margin-top:6px">تسجيل الدخول</button>
+              <div class="divider"><div class="divider-line"></div><div class="divider-text">أو الدخول عبر</div><div class="divider-line"></div></div>
+              <button class="social-btn">🌐 Google</button>
+              <button class="social-btn">🍎 Apple</button>
+              <div class="register-link">ليس لديك حساب؟ <span>إنشاء حساب جديد</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>المستخدم يدخل البريد + كلمة المرور</div>
+          <div class="flow-step"><div class="step-dot">2</div>APEX يتحقق من البيانات في Oracle DB</div>
+          <div class="flow-step"><div class="step-dot">3</div>يُرجع JWT Access Token + Refresh Token + بيانات المستخدم</div>
+          <div class="flow-step"><div class="step-dot">4</div>يُخزن الـ Token في Flutter Secure Storage</div>
+          <div class="flow-step"><div class="step-dot">5</div>في حالة الخطأ: رسائل validation واضحة بالعربي</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/login</div><div class="api-desc">Body: {email, password} → يُرجع {access_token, refresh_token, user}</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/social-login</div><div class="api-desc">Body: {provider: 'google'|'apple', token} → تسجيل دخول اجتماعي</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/forgot-password</div><div class="api-desc">Body: {email} → إرسال رمز OTP للبريد الإلكتروني</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/reset-password</div><div class="api-desc">Body: {otp, new_password} → تحديث كلمة المرور</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/register</div><div class="api-desc">Body: {name, email, password, role:'student'|'teacher'} → إنشاء حساب</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/logout</div><div class="api-desc">Header: Bearer Token → إبطال الـ Token الحالي</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">4</div>
+        <div><h3>إنشاء حساب جديد</h3><div class="sub">Register Screen</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="login-header">
+              <div class="login-logo"><span>ITQANتقان</span></div>
+              <div class="login-sub">إنشاء حساب جديد 🚀</div>
+            </div>
+            <div class="login-form">
+              <div class="form-group"><label class="form-label">الاسم الكامل</label><input class="input-field" placeholder="إبراهيم الرعيني"></div>
+              <div class="form-group"><label class="form-label">البريد الإلكتروني</label><input class="input-field" placeholder="example@email.com"></div>
+              <div class="form-group"><label class="form-label">كلمة المرور</label><input class="input-field" placeholder="••••••••" type="password"></div>
+              <div class="form-group"><label class="form-label">نوع الحساب</label>
+                <div style="display:flex;gap:8px;margin-top:4px">
+                  <div style="flex:1;border:2px solid var(--blue);background:var(--blue-light);border-radius:10px;padding:10px;text-align:center;font-size:12px;font-weight:700;color:var(--blue)">🎓 طالب</div>
+                  <div style="flex:1;border:2px solid var(--border);border-radius:10px;padding:10px;text-align:center;font-size:12px;font-weight:700;color:var(--text3)">👨‍🏫 معلم</div>
+                </div>
+              </div>
+              <button class="btn-main">إنشاء الحساب</button>
+              <div class="register-link">لديك حساب؟ <span>تسجيل الدخول</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>Validation لحظي على كل حقل (كلمة مرور قوية، بريد صحيح)</div>
+          <div class="flow-step"><div class="step-dot">2</div>اختيار نوع الحساب (طالب / معلم) يحدد صلاحيات الواجهة</div>
+          <div class="flow-step"><div class="step-dot">3</div>إرسال البيانات → APEX يتحقق من عدم تكرار البريد</div>
+          <div class="flow-step"><div class="step-dot">4</div>إرسال بريد تفعيل → المستخدم يدخل OTP للتحقق</div>
+          <div class="flow-step"><div class="step-dot">5</div>بعد التفعيل: تسجيل دخول تلقائي وانتقال لـ Home</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/verify-email</div><div class="api-desc">Body: {email, otp} → التحقق من رمز البريد الإلكتروني</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/auth/resend-otp</div><div class="api-desc">Body: {email} → إعادة إرسال رمز التحقق</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOME -->
+<section class="section" id="s-home">
+  <div class="section-heading">
+    <div class="section-num orange">3</div>
+    <div class="section-title-text">
+      <h2>الشاشة الرئيسية</h2>
+      <p>نقطة البداية الرئيسية للطالب — تعرض ملخص التقدم، البث المباشر، والدورات المسجل فيها</p>
+    </div>
+  </div>
+  <div class="screens-grid" style="grid-template-columns:1fr">
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">5</div>
+        <div><h3>Home Screen — الشاشة الرئيسية</h3><div class="sub">لوحة التحكم الشخصية للطالب</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap" style="gap:20px">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="home-header-bg">
+              <div class="h-row">
+                <div style="display:flex;gap:8px;align-items:center"><div class="notif-btn">🔔</div><div><div class="greeting-sub">مساء الخير 🌙</div><div class="greeting-name">إبراهيم الرعيني</div></div></div>
+                <div class="h-avatar">إ</div>
+              </div>
+              <div class="search-pill">🔍 <span>ابحث عن دورة أو مهارة...</span></div>
+            </div>
+            <div class="stats-bar">
+              <div class="stat-item"><div class="sv">7</div><div class="sl">دورات نشطة</div></div>
+              <div class="stat-item"><div class="sv">142</div><div class="sl">ساعة تعلم</div></div>
+              <div class="stat-item"><div class="sv">4</div><div class="sl">شهادات</div></div>
+              <div class="stat-item" style="background:rgba(245,166,35,0.1)"><div class="sv" style="color:var(--orange)">89%</div><div class="sl">إنجاز</div></div>
+            </div>
+            <div class="sec-hdr"><span class="sec-ttl">🔴 بث مباشر الآن</span><span class="sec-all">عرض الكل</span></div>
+            <div class="live-strip">
+              <div class="live-top">
+                <div class="live-dot"></div><div class="live-lbl">مباشر</div>
+                <div class="live-title">Flutter — State Management</div>
+                <button class="live-join">انضم</button>
+              </div>
+              <div class="live-info">
+                <div class="live-ava">هـ</div>
+                <div class="live-teacher">د. هشام الرعيني</div>
+                <div class="live-viewers">👥 47 مشارك</div>
+              </div>
+            </div>
+            <div class="sec-hdr"><span class="sec-ttl">دوراتي الحالية</span><span class="sec-all">عرض الكل</span></div>
+            <div class="cats"><div class="cat on">الكل</div><div class="cat off">برمجة</div><div class="cat off">تصميم</div><div class="cat off">AI</div><div class="cat off">قواعد بيانات</div></div>
+            <div class="cc"><div class="cc-thumb" style="background:linear-gradient(135deg,#1A237E,#3949AB)">🎨</div><div class="cc-info"><div class="cc-cat">Flutter & Dart</div><div class="cc-name">تطوير تطبيقات موبايل احترافية</div><div class="cc-teacher">د. هشام الرعيني</div><div class="cc-prog"><div class="prog-bar"><div class="prog-fill" style="width:72%"></div></div><div class="prog-pct">72%</div></div></div></div>
+            <div class="cc"><div class="cc-thumb" style="background:linear-gradient(135deg,#E65100,#FF9800)">🤖</div><div class="cc-info"><div class="cc-cat">AI & ML</div><div class="cc-name">أساسيات الذكاء الاصطناعي</div><div class="cc-teacher">د. هشام الرعيني</div><div class="cc-prog"><div class="prog-bar"><div class="prog-fill" style="width:45%"></div></div><div class="prog-pct">45%</div></div></div></div>
+            <div class="cc"><div class="cc-thumb" style="background:linear-gradient(135deg,#1B5E20,#4CAF50)">🗄️</div><div class="cc-info"><div class="cc-cat">Oracle APEX</div><div class="cc-name">Oracle APEX وRESTful APIs</div><div class="cc-teacher">د. هشام الرعيني</div><div class="cc-prog"><div class="prog-bar"><div class="prog-fill" style="width:91%"></div></div><div class="prog-pct" style="color:var(--green)">91%</div></div></div></div>
+            <div style="height:8px"></div>
+            <div class="bnav"><div class="bni active"><div class="bni-icon">🏠</div>الرئيسية</div><div class="bni"><div class="bni-icon">📚</div>دوراتي</div><div class="bni"><div class="bni-icon">🔍</div>استكشف</div><div class="bni"><div class="bni-icon">💬</div>مجتمع</div><div class="bni"><div class="bni-icon">👤</div>حسابي</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل الكاملة</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>عند فتح الشاشة: 3 API calls متوازية (Dashboard Stats + Active Courses + Live Sessions)</div>
+          <div class="flow-step"><div class="step-dot">2</div>تعرض الإحصائيات: عدد الدورات، ساعات التعلم، الشهادات، نسبة الإنجاز الشهري</div>
+          <div class="flow-step"><div class="step-dot">3</div>قسم "بث مباشر الآن": يتحدث كل 30 ثانية أو عبر Agora RTM لإظهار الجلسات الحية</div>
+          <div class="flow-step"><div class="step-dot">4</div>قائمة الدورات مع Progress Bar لكل دورة (محسوبة من نسبة الدروس المكتملة)</div>
+          <div class="flow-step"><div class="step-dot">5</div>الفلترة بالـ Category تتم محلياً على البيانات المحملة بالفعل (لا API جديد)</div>
+          <div class="flow-step"><div class="step-dot">6</div>البحث يُطلق API call بعد 300ms من توقف الكتابة (Debounce)</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/dashboard</div><div class="api-desc">الإحصائيات الشخصية: total_courses, learning_hours, certificates_count, monthly_progress</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/enrolled-courses?status=active</div><div class="api-desc">الدورات المسجل فيها مع نسبة التقدم لكل دورة</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/live-sessions/active</div><div class="api-desc">الجلسات المباشرة الحية الآن المرتبطة بدورات الطالب</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/courses/search?q={query}</div><div class="api-desc">البحث الكامل في الدورات والمعلمين والمحتوى</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/courses/recommended</div><div class="api-desc">الدورات الموصى بها بناءً على سلوك الطالب واهتماماته</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE -->
+<section class="section section-alt" id="s-explore">
+  <div class="section-heading">
+    <div class="section-num purple">4</div>
+    <div class="section-title-text">
+      <h2>استكشاف الدورات</h2>
+      <p>تصفح وفلترة وبحث في كتالوج الدورات الكامل للمنصة</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">6</div>
+        <div><h3>Explore Screen</h3><div class="sub">استكشاف الكتالوج الكامل</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="explore-header">
+              <div class="sb sb-light" style="padding:0 0 10px">استكشف الدورات</div>
+              <div class="filter-row">
+                <div class="filter-chip on">الكل</div><div class="filter-chip off">برمجة</div><div class="filter-chip off">تصميم</div><div class="filter-chip off">AI</div><div class="filter-chip off">شبكات</div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;display:flex;gap:8px;background:white;border-bottom:1px solid var(--border)">
+              <input class="input-field" placeholder="🔍 ابحث..." style="padding:8px 12px;font-size:11px">
+              <div style="width:36px;height:36px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">⚙️</div>
+            </div>
+            <div style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:11px;color:var(--text2)">84 دورة متاحة</div>
+              <div style="font-size:10px;color:var(--blue);font-weight:700">الأكثر تقييماً ↓</div>
+            </div>
+            <div class="explore-grid">
+              <div class="ec"><div class="ec-img" style="background:linear-gradient(135deg,#1A237E,#3949AB)">🎨</div><div class="ec-body"><div class="ec-cat">Flutter</div><div class="ec-name">تطوير تطبيقات موبايل احترافية</div><div class="ec-teacher">د. هشام الرعيني</div><div class="ec-meta"><div class="ec-stars">⭐ 4.9</div><div class="ec-students">3.2k طالب</div></div></div></div>
+              <div class="ec"><div class="ec-img" style="background:linear-gradient(135deg,#E65100,#FF9800)">🤖</div><div class="ec-body"><div class="ec-cat">AI & ML</div><div class="ec-name">أساسيات الذكاء الاصطناعي</div><div class="ec-teacher">د. هشام الرعيني</div><div class="ec-meta"><div class="ec-stars">⭐ 4.8</div><div class="ec-students">5.1k طالب</div></div></div></div>
+              <div class="ec"><div class="ec-img" style="background:linear-gradient(135deg,#1B5E20,#4CAF50)">🗄️</div><div class="ec-body"><div class="ec-cat">Oracle</div><div class="ec-name">Oracle APEX REST APIs</div><div class="ec-teacher">د. هشام الرعيني</div><div class="ec-meta"><div class="ec-stars">⭐ 4.7</div><div class="ec-students">1.8k طالب</div></div></div></div>
+              <div class="ec"><div class="ec-img" style="background:linear-gradient(135deg,#4A148C,#7B1FA2)">🔐</div><div class="ec-body"><div class="ec-cat">Security</div><div class="ec-name">أمن المعلومات والشبكات</div><div class="ec-teacher">د. هشام الرعيني</div><div class="ec-meta"><div class="ec-stars">⭐ 4.9</div><div class="ec-students">2.4k طالب</div></div></div></div>
+            </div>
+            <div class="bnav"><div class="bni"><div class="bni-icon">🏠</div>الرئيسية</div><div class="bni"><div class="bni-icon">📚</div>دوراتي</div><div class="bni active"><div class="bni-icon">🔍</div>استكشف</div><div class="bni"><div class="bni-icon">💬</div>مجتمع</div><div class="bni"><div class="bni-icon">👤</div>حسابي</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>تحميل كتالوج الدورات مع Pagination (20 دورة في كل صفحة)</div>
+          <div class="flow-step"><div class="step-dot">2</div>فلترة بالـ Category + Sort (الأحدث / الأعلى تقييماً / الأكثر اشتراكاً)</div>
+          <div class="flow-step"><div class="step-dot">3</div>نتائج البحث تظهر لحظياً مع Skeleton loading</div>
+          <div class="flow-step"><div class="step-dot">4</div>الضغط على دورة يفتح Course Detail Screen</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/courses?category={id}&sort={by}&page={n}</div><div class="api-desc">قائمة الدورات مع Filtering & Pagination</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/categories</div><div class="api-desc">قائمة التصنيفات مع عدد الدورات لكل تصنيف</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/courses/featured</div><div class="api-desc">الدورات المميزة للـ Banner الرئيسي</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COURSE DETAIL -->
+    <div class="screen-card" id="s-course">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">7</div>
+        <div><h3>Course Detail</h3><div class="sub">تفاصيل الدورة والمنهج</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="cd-hero"><div class="cd-back">←</div><div class="cd-cat">Flutter & Mobile Dev</div><div class="cd-title">تطوير تطبيقات موبايل احترافية</div><div class="cd-meta"><div class="cd-stars">⭐⭐⭐⭐⭐</div><div class="cd-cnt">4.9 • (3,241 تقييم)</div></div></div>
+            <div class="cd-inst"><div class="cd-ava">هـ</div><div><div class="cd-iname">د. هشام الرعيني</div><div class="cd-irole">مطور • 12 دورة • 45k طالب</div></div><button class="cd-follow">+ تابع</button></div>
+            <div class="prog-ring-wrap">
+              <svg width="72" height="72" viewBox="0 0 72 72" style="transform:rotate(-90deg)">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#EEF2F6" stroke-width="5"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="url(#rg)" stroke-width="5" stroke-linecap="round" stroke-dasharray="176" stroke-dashoffset="44"/>
+                <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0A6EBD"/><stop offset="100%" stop-color="#00C2CB"/></linearGradient></defs>
+              </svg>
+              <div class="ring-stat"><div class="rp">75%</div><div class="rl">تقدمك</div><div class="ring-sub"><div class="rs"><div class="rv">18/24</div><div class="rl2">درس</div></div><div class="rs"><div class="rv">3/4</div><div class="rl2">اختبار</div></div><div class="rs"><div class="rv">2/3</div><div class="rl2">مشروع</div></div></div></div>
+            </div>
+            <div class="cert-bar"><div class="ci">🏆</div><div><div class="ct">قاب قوسين من شهادتك!</div><div class="cs">أكمل 15% للحصول على الشهادة</div></div><div class="cp">75%</div></div>
+            <div class="tabs"><div class="tab on">المحتوى</div><div class="tab">نظرة عامة</div><div class="tab">تقييمات</div><div class="tab">مناقشات</div></div>
+            <div class="curr">
+              <div class="wk-hdr"><span>الوحدة 1: أساسيات Flutter</span><span class="wk-cnt">مكتملة ✅</span></div>
+              <div class="lesson"><div class="l-icon v">▶️</div><div class="l-info"><div class="lt">مقدمة في Flutter وDart</div><div class="lm">🎥 18 دقيقة</div></div><div class="l-status">✅</div></div>
+              <div class="lesson"><div class="l-icon q">📝</div><div class="l-info"><div class="lt">اختبار الأساسيات</div><div class="lm">📊 10 أسئلة • 95%</div></div><div class="l-status">✅</div></div>
+              <div class="wk-hdr"><span>الوحدة 3: State Management</span><span class="wk-cnt">2/5 مكتمل</span></div>
+              <div class="lesson" style="border-color:var(--blue)"><div class="l-icon v" style="background:rgba(10,110,189,0.15)">▶️</div><div class="l-info"><div class="lt" style="color:var(--blue)">Provider Pattern المتقدم</div><div class="lm" style="color:var(--blue)">▶ جاري التشغيل</div></div><div class="l-status">▶</div></div>
+              <div class="lesson"><div class="l-icon a">📤</div><div class="l-info"><div class="lt">المشروع التطبيقي</div><div class="lm">📎 3 أيام متبقية</div></div><div class="l-status">⏳</div></div>
+              <div class="lesson" style="opacity:0.5"><div class="l-icon lk">🔒</div><div class="l-info"><div class="lt">Riverpod الشامل</div><div class="lm">🔒 مقفول</div></div><div class="l-status">🔒</div></div>
+            </div>
+            <div class="enroll-footer"><button class="btn-main">▶️ متابعة التعلم</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>تحميل تفاصيل الدورة + منهجها + بيانات المعلم في request واحد</div>
+          <div class="flow-step"><div class="step-dot">2</div>إذا كان الطالب مسجلاً: عرض Progress Ring + الدروس القابلة للوصول</div>
+          <div class="flow-step"><div class="step-dot">3</div>الدروس المقفولة تتطلب إكمال الدرس السابق أو تاريخاً معيناً</div>
+          <div class="flow-step"><div class="step-dot">4</div>نسبة ≥ 90% تُظهر بانر الشهادة ويصبح زر "الحصول على الشهادة" فعالاً</div>
+          <div class="flow-step"><div class="step-dot">5</div>تبويب "مناقشات" يعرض المنتدى الخاص بالدورة</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/courses/{id}</div><div class="api-desc">تفاصيل الدورة الكاملة: المحتوى، المعلم، التقييمات، عدد الطلاب</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/courses/{id}/curriculum</div><div class="api-desc">المنهج الكامل: الوحدات، الدروس، الاختبارات، الواجبات مع حالة كل منها</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/progress/{course_id}</div><div class="api-desc">تقدم الطالب في هذه الدورة: completed_lessons, quiz_scores, overall_percentage</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/courses/{id}/enroll</div><div class="api-desc">التسجيل في الدورة (مجانية أو مدفوعة)</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/courses/{id}/reviews?page={n}</div><div class="api-desc">التقييمات والمراجعات مع Pagination</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO PLAYER -->
+<section class="section" id="s-video">
+  <div class="section-heading">
+    <div class="section-num green">5</div>
+    <div class="section-title-text">
+      <h2>مشغل الفيديو التعليمي</h2>
+      <p>عرض المحتوى المسجل مع ملاحظات، مرفقات، ومناقشات الدرس — نمط التعلم غير المتزامن</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">8</div>
+        <div><h3>Video Player Screen</h3><div class="sub">مشغل الفيديو التعليمي المتقدم</div></div>
+        <div class="screen-type-badge" style="background:rgba(34,197,94,0.15);color:var(--green);border-color:rgba(34,197,94,0.3)">غير متزامن</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="vp-player">
+              <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0D1B2E,#1A2A4A)"></div>
+              <div class="vp-play" style="position:relative;z-index:2">⏸</div>
+              <div class="vp-time" style="position:absolute;bottom:28px;left:10px;z-index:2">12:34 / 24:18</div>
+              <div class="vp-full" style="position:absolute;bottom:28px;right:10px;z-index:2">⛶</div>
+              <div style="position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.5);color:white;font-size:9px;padding:3px 8px;border-radius:4px;z-index:2">HD 1080p</div>
+            </div>
+            <div class="vp-bar"><div class="vp-prog"></div></div>
+            <div class="vp-body">
+              <div class="vp-title">Provider Pattern المتقدم في Flutter</div>
+              <div class="vp-meta"><span>📚 الوحدة 3</span><span>👁 1,234 مشاهدة</span><span>📅 15 مايو 2025</span></div>
+              <div class="vp-actions">
+                <div class="vp-btn active"><div class="vp-btn-icon">❤️</div>إعجاب</div>
+                <div class="vp-btn"><div class="vp-btn-icon">🔖</div>حفظ</div>
+                <div class="vp-btn"><div class="vp-btn-icon">📥</div>تحميل</div>
+                <div class="vp-btn"><div class="vp-btn-icon">📤</div>مشاركة</div>
+                <div class="vp-btn"><div class="vp-btn-icon">⚙️</div>سرعة</div>
+              </div>
+            </div>
+            <div class="vp-tabs"><div class="vp-tab on">ملاحظاتي</div><div class="vp-tab">مرفقات</div><div class="vp-tab">مناقشة</div><div class="vp-tab">الدرس التالي</div></div>
+            <div class="vp-notes">
+              <div class="vp-note-item"><div class="vp-note-time">03:24</div><div class="vp-note-text">Provider يُحدّث الـ Widget تلقائياً عند تغيير الحالة</div></div>
+              <div class="vp-note-item"><div class="vp-note-time">11:48</div><div class="vp-note-text">يجب وضع ChangeNotifierProvider أعلى الـ Widget Tree</div></div>
+              <div class="vp-note-item"><div class="vp-note-time">18:05</div><div class="vp-note-text">Consumer vs Selector — الفرق في الأداء</div></div>
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <input class="input-field" placeholder="+ أضف ملاحظة عند هذه اللحظة..." style="padding:8px 10px;font-size:10px">
+                <div style="width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;cursor:pointer;flex-shrink:0">+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>يُحضر رابط الفيديو المحمي (Signed URL) من الـ API صالح لـ 2 ساعة فقط</div>
+          <div class="flow-step"><div class="step-dot">2</div>كل 30 ثانية يُرسل "heartbeat" للـ API لتسجيل وقت المشاهدة وتحديث التقدم</div>
+          <div class="flow-step"><div class="step-dot">3</div>عند إكمال 90%+ من الفيديو: يُعلَّم الدرس "مكتمل" تلقائياً</div>
+          <div class="flow-step"><div class="step-dot">4</div>الملاحظات تُربط بـ Timestamp دقيق للفيديو وتُحفظ في DB</div>
+          <div class="flow-step"><div class="step-dot">5</div>التحميل للـ Offline يستخدم تشفيراً ويربط بـ device ID منعاً للمشاركة</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/lessons/{id}/stream-url</div><div class="api-desc">رابط البث المؤقت المشفر (Signed URL) صالح لمدة 2 ساعة</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/lessons/{id}/progress</div><div class="api-desc">Body: {watched_seconds, is_complete} → تحديث تقدم المشاهدة</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/lessons/{id}/notes</div><div class="api-desc">Body: {timestamp_sec, text} → حفظ ملاحظة مرتبطة بلحظة زمنية</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/lessons/{id}/notes</div><div class="api-desc">جلب ملاحظات الطالب لهذا الدرس</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/lessons/{id}/attachments</div><div class="api-desc">ملفات الدرس المرفقة (PDF، Slides، Code)</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/lessons/{id}/offline-request</div><div class="api-desc">طلب رابط التحميل للمشاهدة بدون إنترنت (يُقيَّد بعدد الأجهزة)</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE SESSION -->
+    <div class="screen-card" id="s-live">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">9</div>
+        <div><h3>Live Session Screen</h3><div class="sub">الجلسة التدريبية المباشرة</div></div>
+        <div class="screen-type-badge live">متزامن — مباشر</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner" style="background:#070E1A">
+            <div class="ls-bg">
+              <div class="ls-topbar">
+                <div class="ls-live"><div class="live-dot" style="background:white"></div>مباشر • 47:23</div>
+                <div class="ls-time">👥 47 مشارك</div>
+                <div class="ls-close">✕</div>
+              </div>
+              <div class="ls-video">
+                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0D1B2E,#142440)"></div>
+                <div class="ls-teacher-av" style="position:relative;z-index:2">هـ</div>
+                <div class="ls-tname" style="position:relative;z-index:2">د. هشام الرعيني</div>
+                <div class="sp-ind" style="position:relative;z-index:2"><div class="sb2"></div><div class="sb2"></div><div class="sb2"></div><div class="sb2"></div><div class="sb2"></div></div>
+                <div class="ls-topic">📌 State Management — Provider</div>
+                <div class="ls-mini"><div class="mc" style="background:#1a3a5a">👨‍💻</div><div class="mc" style="background:#2a1a4a">👩‍💻</div><div class="mc" style="background:#1a4a2a">🧑‍💻</div></div>
+              </div>
+              <div class="ls-tools">
+                <div class="lt on"><div class="li">🎙️</div>صوت</div>
+                <div class="lt off"><div class="li">📹</div>كاميرا</div>
+                <div class="lt on"><div class="li">🖥️</div>شاشة</div>
+                <div class="lt on"><div class="li">✏️</div>سبورة</div>
+                <div class="lt off"><div class="li">❓</div>اختبار</div>
+                <div class="lt off"><div class="li">🎨</div>ثيم</div>
+                <div class="lt off"><div class="li">📊</div>استطلاع</div>
+                <div class="lt off"><div class="li">🎬</div>فيديو</div>
+              </div>
+              <div class="ls-parts">
+                <div class="lp"><div class="lp-av sp" style="background:linear-gradient(135deg,var(--blue),var(--teal))">هـ</div><div class="lp-nm">المعلم</div></div>
+                <div class="lp"><div class="lp-av" style="background:#7C4DFF">إ</div><div class="lp-nm">إبراهيم</div></div>
+                <div class="lp"><div class="lp-av" style="background:#E91E63">س</div><div class="lp-nm">سارة</div></div>
+                <div class="lp"><div class="lp-av" style="background:#FF9800">خ</div><div class="lp-nm">خالد عمر</div></div>
+                <div class="lp"><div class="lp-av" style="background:#009688">ن</div><div class="lp-nm">نور</div></div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.35);align-self:center">+42</div>
+              </div>
+              <div class="ls-chat">
+                <div style="font-size:9px;color:rgba(255,255,255,0.2);text-align:center">— محادثة الجلسة —</div>
+                <div class="cm"><div class="cm-av" style="background:#7C4DFF">إ</div><div class="cm-b"><div class="cm-u">إبراهيم</div><div class="cm-t">ممكن توضيح الفرق بين Provider و Riverpod؟</div></div></div>
+                <div class="cm"><div class="cm-av" style="background:linear-gradient(135deg,var(--blue),var(--teal))">هـ</div><div class="cm-b" style="background:rgba(0,194,203,0.12);border-right:2px solid var(--teal)"><div class="cm-u" style="color:var(--teal)">د. محمد 🎓</div><div class="cm-t">سؤال ممتاز! سنشرحه في الجزء القادم مباشرة</div></div></div>
+                <div class="cm mine"><div class="cm-av" style="background:var(--orange)">إ</div><div class="cm-b"><div class="cm-u">أنت</div><div class="cm-t">شكراً! هل يمكن استخدامهما معاً؟</div></div></div>
+              </div>
+              <div class="ci-row">
+                <input class="ci-in" placeholder="اكتب رسالة...">
+                <div class="ci-emoji">😊</div>
+                <div class="ci-send">✈️</div>
+              </div>
+              <div style="margin:4px 10px 6px;background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.3);border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:8px">
+                <span style="font-size:18px">📝</span>
+                <div><div style="color:var(--orange);font-size:10px;font-weight:700">اختبار سريع من المعلم!</div><div style="color:rgba(255,255,255,0.5);font-size:9px">سؤال واحد • 60 ثانية</div></div>
+                <button style="background:var(--orange);color:white;border:none;border-radius:50px;padding:4px 12px;font-size:9px;font-weight:700;font-family:'Cairo',sans-serif;margin-right:auto;cursor:pointer">ابدأ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل الكاملة</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>المعلم يُنشئ جلسة من لوحة تحكمه → يُولَّد Session Token فريد</div>
+          <div class="flow-step"><div class="step-dot">2</div>الطالب يضغط "انضم" → الـ API يُرجع Agora SDK Config (ICE Servers, Token)</div>
+          <div class="flow-step"><div class="step-dot">3</div>اتصال Agora RTC ينشأ مع خوادم Agora لبث الصوت والصورة للصوت/الصورة</div>
+          <div class="flow-step"><div class="step-dot">4</div>Agora RTM يُدير: الشات، رفع الأيدي، الاختبارات الفورية، تغيير الثيم</div>
+          <div class="flow-step"><div class="step-dot">5</div>المعلم يُطلق اختباراً → يصل لكل الطلاب عبر Agora RTM event فوراً</div>
+          <div class="flow-step"><div class="step-dot">6</div>عند انتهاء الجلسة: يُسجَّل التسجيل ويُتاح لاحقاً في المحتوى غير المتزامن</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/live-sessions/create</div><div class="api-desc">المعلم يُنشئ جلسة: {course_id, title, scheduled_at} → يُرجع session_id</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/live-sessions/{id}/join</div><div class="api-desc">الطالب ينضم: يُرجع Agora SDK credentials + Agora RTM Token</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/live-sessions/{id}/participants</div><div class="api-desc">قائمة المشاركين الحاليين مع حالة الصوت/الكاميرا</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/live-sessions/{id}/end</div><div class="api-desc">إنهاء الجلسة وبدء معالجة التسجيل</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/live-sessions/{id}/quiz/launch</div><div class="api-desc">إطلاق اختبار فوري → يُرسل Agora RTM event لكل المشاركين</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/live-sessions/{id}/recording</div><div class="api-desc">رابط التسجيل بعد انتهاء الجلسة ومعالجتها</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ + ASSIGNMENT -->
+<section class="section section-alt" id="s-quiz">
+  <div class="section-heading">
+    <div class="section-num orange">6</div>
+    <div class="section-title-text">
+      <h2>الاختبارات والواجبات</h2>
+      <p>نظام التقييم الشامل — اختبارات تفاعلية، واجبات، ورفع الملفات</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+
+    <!-- QUIZ -->
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">10</div>
+        <div><h3>Quiz Screen</h3><div class="sub">الاختبار التفاعلي</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="quiz-hdr">
+              <div class="quiz-row" style="margin-bottom:10px"><div style="font-size:14px;font-weight:800">اختبار الوحدة 3</div><div class="quiz-timer">⏱️ 08:42</div></div>
+              <div class="quiz-steps"><div class="qs done"></div><div class="qs done"></div><div class="qs cur"></div><div class="qs"></div><div class="qs"></div><div class="qs"></div><div class="qs"></div><div class="qs"></div><div class="qs"></div><div class="qs"></div></div>
+              <div class="quiz-num">السؤال 3 من 10 • الدرجة: 20/20</div>
+            </div>
+            <div class="q-area">
+              <div class="q-text">في Flutter، ما الفرق الأساسي بين <code style="background:var(--blue-light);color:var(--blue);padding:1px 5px;border-radius:3px;font-family:'JetBrains Mono',monospace">StatefulWidget</code> و <code style="background:var(--blue-light);color:var(--blue);padding:1px 5px;border-radius:3px;font-family:'JetBrains Mono',monospace">StatelessWidget</code>؟</div>
+              <div class="opt ok"><div class="opt-r">✓</div><div class="opt-t">StatefulWidget يحمل حالة قابلة للتغيير أثناء دورة الحياة، بينما StatelessWidget ثابت</div></div>
+              <div class="opt no"><div class="opt-r"></div><div class="opt-t">StatelessWidget أسرع دائماً من StatefulWidget بغض النظر عن الاستخدام</div></div>
+              <div class="opt"><div class="opt-r"></div><div class="opt-t">لا يوجد فرق حقيقي، مجرد اختلاف في الكتابة</div></div>
+              <div class="opt"><div class="opt-r"></div><div class="opt-t">StatefulWidget مخصص للواجهات فقط</div></div>
+              <div class="correct-msg"><div class="ct">✅ إجابة صحيحة! +10 نقاط</div><div class="cx">StatefulWidget يستخدم setState() لإعادة رسم الـ widget عند تغير البيانات.</div></div>
+            </div>
+            <div class="q-nav"><button class="qb-back">السابق</button><button class="qb-next">التالي ←</button></div>
+            <div style="margin:0 14px 14px;background:white;border-radius:10px;padding:12px;border:1px solid var(--border)">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:10px;color:var(--text2);font-weight:600">تقدم الاختبار</span><span style="font-size:10px;font-weight:700;color:var(--green)">✓ 3 صحيحة</span></div>
+              <div style="height:5px;background:var(--bg);border-radius:50px;overflow:hidden"><div style="height:100%;width:30%;background:linear-gradient(90deg,var(--green),#4ADE80);border-radius:50px"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>تحميل أسئلة الاختبار من APEX مرة واحدة وتخزينها محلياً</div>
+          <div class="flow-step"><div class="step-dot">2</div>العداد التنازلي يعمل محلياً، وعند انتهاء الوقت يُقدَّم الاختبار تلقائياً</div>
+          <div class="flow-step"><div class="step-dot">3</div>في وضع المباشر: الاختبارات الفورية تصل عبر Agora RTM ولها وقت محدد أقصر</div>
+          <div class="flow-step"><div class="step-dot">4</div>التصحيح الفوري (للاختبارات غير المحددة الوقت) يعطي تغذية راجعة لحظية</div>
+          <div class="flow-step"><div class="step-dot">5</div>إرسال الإجابات → APEX يحسب الدرجة ويحفظها ويُحدّث تقدم الطالب</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/quizzes/{id}/questions</div><div class="api-desc">أسئلة الاختبار مع الخيارات (بدون الإجابات الصحيحة في الـ Response)</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/quizzes/{id}/submit</div><div class="api-desc">Body: {answers: [{question_id, selected_option}]} → الدرجة والتصحيح</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/quizzes/{id}/results/{attempt_id}</div><div class="api-desc">نتيجة محاولة سابقة مع التصحيح التفصيلي</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/live-sessions/{id}/quiz/{quiz_id}</div><div class="api-desc">اختبار الجلسة المباشرة الفوري (يُرسل عبر Agora RTM أيضاً)</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSIGNMENT -->
+    <div class="screen-card" id="s-assignment">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">11</div>
+        <div><h3>Assignment Screen</h3><div class="sub">رفع الواجبات والمشاريع</div></div>
+        <div class="screen-type-badge" style="background:rgba(34,197,94,0.15);color:var(--green);border-color:rgba(34,197,94,0.3)">غير متزامن</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="asgn-hdr">
+              <div class="asgn-title">المشروع التطبيقي — Capstone</div>
+              <div class="asgn-meta"><span>📚 الوحدة 3</span><span>⭐ 100 درجة</span></div>
+            </div>
+            <div class="asgn-deadline"><div class="di">⏰</div><div><div class="dt">الموعد النهائي: 18 مايو 2025</div><div class="ds">متبقي 3 أيام و 14 ساعة</div></div></div>
+            <div class="asgn-body">
+              <div class="asgn-desc-box">
+                <div class="dl">📋 وصف الواجب</div>
+                <div class="dt2">قم ببناء تطبيق قائمة مهام (ToDo App) باستخدام Flutter مع Provider لإدارة الحالة. يجب أن يتضمن إضافة، تعديل، حذف المهام مع Local Storage.</div>
+              </div>
+              <div style="font-size:11px;font-weight:700;margin-bottom:8px">📁 ملفاتك المرفوعة</div>
+              <div class="file-attached"><div class="file-icon">📦</div><div><div class="file-name">todo_app_project.zip</div><div class="file-size">2.4 MB • تم الرفع منذ ساعتين</div></div><div class="file-del">🗑</div></div>
+              <div class="upload-area" style="border-color:var(--blue);background:var(--blue-light)">
+                <div class="upload-icon">📎</div>
+                <div class="upload-text">استبدال الملف</div>
+                <div class="upload-sub">ZIP, PDF, PNG — حد أقصى 50MB</div>
+              </div>
+              <div style="font-size:11px;font-weight:700;margin-bottom:8px">💬 ملاحظة للمعلم (اختياري)</div>
+              <textarea class="input-field" rows="3" placeholder="اكتب أي ملاحظة للمعلم..." style="resize:none;font-size:11px"></textarea>
+              <button class="btn-main" style="margin-top:12px">✅ تسليم الواجب</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>رفع الملف يستخدم Multipart Upload مع Progress Bar</div>
+          <div class="flow-step"><div class="step-dot">2</div>الملف يُخزن في Object Storage ويُرفع URL الـ Reference للـ Oracle DB</div>
+          <div class="flow-step"><div class="step-dot">3</div>التسليم بعد الموعد يُسجَّل كـ "Late Submission" مع الوقت</div>
+          <div class="flow-step"><div class="step-dot">4</div>المعلم يرى الواجب ويضيف التعليقات والدرجة من لوحة تحكمه</div>
+          <div class="flow-step"><div class="step-dot">5</div>إشعار فوري للطالب عند تصحيح الواجب</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/assignments/{id}</div><div class="api-desc">تفاصيل الواجب: الوصف، الموعد، الدرجة، حالة التسليم</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/assignments/{id}/upload</div><div class="api-desc">Multipart: رفع ملف الواجب → يُرجع file_url</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/assignments/{id}/submit</div><div class="api-desc">Body: {file_url, note} → تسليم الواجب النهائي</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/assignments/{id}/submission</div><div class="api-desc">حالة التسليم: submitted_at, grade, teacher_comment</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE + PROFILE -->
+<section class="section" id="s-cert">
+  <div class="section-heading">
+    <div class="section-num">7</div>
+    <div class="section-title-text">
+      <h2>الشهادات والملف الشخصي</h2>
+      <p>شهادات الإنجاز بعد إكمال الدورات، والإحصائيات والإنجازات الشخصية</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">12</div>
+        <div><h3>Certificate Screen</h3><div class="sub">عرض ومشاركة الشهادة</div></div>
+        <div class="screen-type-badge" style="background:rgba(245,166,35,0.15);color:var(--orange);border-color:rgba(245,166,35,0.3)">إنجاز</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="sb sb-light" style="font-size:10px">
+              <span>🏆 شهاداتي</span><span style="color:var(--blue)">4 شهادات</span>
+            </div>
+            <div class="cert-screen">
+              <div class="cert-card">
+                <div class="cert-top">
+                  <div class="cert-logo">ITQANتقان</div>
+                  <div class="cert-main-icon">🏆</div>
+                  <div class="cert-main-title">شهادة إتمام</div>
+                  <div class="cert-course-name">تطوير تطبيقات موبايل<br>باستخدام Flutter</div>
+                </div>
+                <div class="cert-body">
+                  <div class="cert-student-name">إبراهيم الرعيني</div>
+                  <div class="cert-details">
+                    <div class="cert-detail-row"><span class="k">تاريخ الإصدار</span><span class="v">15 أبريل 2025</span></div>
+                    <div class="cert-detail-row"><span class="k">الدرجة المحققة</span><span class="v">94% — بامتياز</span></div>
+                    <div class="cert-detail-row"><span class="k">مدة الدورة</span><span class="v">40 ساعة تعليمية</span></div>
+                    <div class="cert-detail-row"><span class="k">رمز التحقق</span><span class="v" style="font-family:'JetBrains Mono',monospace;font-size:9px">EDU-2025-FL-8847</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="cert-verify">
+                <div class="cv-icon">✅</div>
+                <div class="cv-text"><div class="ct">شهادة موثوقة ومعتمدة</div><div class="cs">edu.verse/verify/EDU-2025-FL-8847</div></div>
+              </div>
+              <div class="cert-footer">
+                <button class="cert-btn-share">📤 مشاركة</button>
+                <button class="cert-btn-dl">📥 تحميل PDF</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>عند وصول نسبة الإنجاز ≥ 90%: APEX يُصدر الشهادة تلقائياً</div>
+          <div class="flow-step"><div class="step-dot">2</div>كل شهادة لها رمز تحقق فريد يمكن التحقق منه عبر رابط عام</div>
+          <div class="flow-step"><div class="step-dot">3</div>تحميل PDF: Flutter يُولّد ملف PDF من بيانات الشهادة ويحفظه محلياً</div>
+          <div class="flow-step"><div class="step-dot">4</div>المشاركة: تُفتح قائمة Share تتيح الإرسال لـ LinkedIn, WhatsApp, إلخ</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/certificates</div><div class="api-desc">قائمة شهادات الطالب الكاملة</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/certificates/{id}</div><div class="api-desc">تفاصيل شهادة محددة: البيانات الكاملة لتوليد PDF</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/certificates/verify/{code}</div><div class="api-desc">Public — التحقق من صحة شهادة عبر رمزها (لا يتطلب Auth)</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/certificates/{id}/issue</div><div class="api-desc">إصدار الشهادة عند بلوغ نسبة الإنجاز 90% (يُستدعى تلقائياً)</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="screen-card" id="s-profile">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">13</div>
+        <div><h3>Profile Screen</h3><div class="sub">الملف الشخصي والإنجازات</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="prof-hdr"><div class="prof-ava">إ</div></div>
+            <div class="prof-info">
+              <div class="prof-name">إبراهيم الرعيني</div>
+              <div class="prof-role">مطور تطبيقات موبايل • متعلم نشط</div>
+              <div class="prof-stats">
+                <div class="ps"><div class="pv">7</div><div class="pl">دورات</div></div>
+                <div class="ps"><div class="pv">142</div><div class="pl">ساعة</div></div>
+                <div class="ps"><div class="pv">4</div><div class="pl">شهادات</div></div>
+                <div class="ps"><div class="pv">1,240</div><div class="pl">نقطة</div></div>
+              </div>
+            </div>
+            <div class="streak-bar"><div class="si">🔥</div><div><div class="st">سلسلة تعلم 23 يوماً!</div><div class="ss">استمر كل يوم للحفاظ على سلسلتك</div></div></div>
+            <div class="sec-hdr"><span class="sec-ttl">🎓 آخر الشهادات</span><span class="sec-all">عرض الكل</span></div>
+            <div class="certs-scroll">
+              <div class="cert-mini" style="background:linear-gradient(135deg,#1A237E,#3949AB)"><div class="cm-icon">🏆</div><div class="cm-name">تطوير تطبيقات Flutter</div><div class="cm-date">أبريل 2025 • بامتياز</div></div>
+              <div class="cert-mini" style="background:linear-gradient(135deg,#1B5E20,#2E7D32)"><div class="cm-icon">🏆</div><div class="cm-name">Oracle APEX REST APIs</div><div class="cm-date">مارس 2025 • بامتياز</div></div>
+            </div>
+            <div class="sec-hdr"><span class="sec-ttl">🏅 الإنجازات الأخيرة</span></div>
+            <div class="achiev-item"><div class="ai-icon">⚡</div><div class="ai-info"><div class="at">المتعلم السريع</div><div class="as">أكملت 3 دورات في شهر</div></div><div class="ai-pts">+150 نقطة</div></div>
+            <div class="achiev-item"><div class="ai-icon">💯</div><div class="ai-info"><div class="at">علامة كاملة</div><div class="as">100% في اختبار المصطلحات</div></div><div class="ai-pts">+200 نقطة</div></div>
+            <div class="achiev-item"><div class="ai-icon">🌟</div><div class="ai-info"><div class="at">نجم المجتمع</div><div class="as">أجبت على 50 سؤال</div></div><div class="ai-pts">+100 نقطة</div></div>
+            <div style="height:8px"></div>
+            <div class="bnav"><div class="bni"><div class="bni-icon">🏠</div>الرئيسية</div><div class="bni"><div class="bni-icon">📚</div>دوراتي</div><div class="bni"><div class="bni-icon">🔍</div>استكشف</div><div class="bni"><div class="bni-icon">💬</div>مجتمع</div><div class="bni active"><div class="bni-icon">👤</div>حسابي</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>بيانات الملف الشخصي تُحمَّل مرة عند فتح التطبيق وتُخزَّن محلياً</div>
+          <div class="flow-step"><div class="step-dot">2</div>سلسلة التعلم (Streak) يحسبها الـ Server يومياً بناءً على سجل الدخول</div>
+          <div class="flow-step"><div class="step-dot">3</div>الإنجازات تُفعَّل تلقائياً عبر Triggers في Oracle DB عند شروط محددة</div>
+          <div class="flow-step"><div class="step-dot">4</div>تعديل الملف الشخصي: اسم، صورة، الاهتمامات</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/profile</div><div class="api-desc">الملف الشخصي الكامل: الإحصائيات، الإنجازات، السلسلة</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/student/profile</div><div class="api-desc">Body: {name, bio, interests} → تحديث بيانات الملف</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/student/profile/avatar</div><div class="api-desc">Multipart: رفع صورة الملف الشخصي</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/achievements</div><div class="api-desc">قائمة الإنجازات المفتوحة مع النقاط والتاريخ</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/learning-stats</div><div class="api-desc">إحصائيات التعلم: توزيع ساعات التعلم، الفئات المدروسة</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTIF + SETTINGS -->
+<section class="section section-alt" id="s-notif">
+  <div class="section-heading">
+    <div class="section-num green">8</div>
+    <div class="section-title-text">
+      <h2>الإشعارات والإعدادات</h2>
+      <p>مركز الإشعارات وتخصيص تجربة المستخدم</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">14</div>
+        <div><h3>Notifications</h3><div class="sub">مركز الإشعارات</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="notif-header">
+              <div class="notif-title">الإشعارات</div>
+              <div class="notif-filters">
+                <div class="nf on">الكل</div><div class="nf off">دورات</div><div class="nf off">جلسات</div><div class="nf off">اختبارات</div><div class="nf off">شهادات</div>
+              </div>
+            </div>
+            <div class="notif-item unread"><div class="ni-icon" style="background:rgba(239,68,68,0.1)">🔴</div><div class="ni-text"><div class="nt">جلسة مباشرة بدأت الآن — Flutter State Management</div><div class="ns">منذ 2 دقيقة • د. هشام الرعيني</div></div><div class="ni-badge"></div></div>
+            <div class="notif-item unread"><div class="ni-icon" style="background:rgba(245,166,35,0.1)">🏆</div><div class="ni-text"><div class="nt">تهانينا! حصلت على شهادة دورة Oracle APEX</div><div class="ns">منذ 3 ساعات</div></div><div class="ni-badge"></div></div>
+            <div class="notif-item unread"><div class="ni-icon" style="background:rgba(10,110,189,0.1)">📝</div><div class="ni-text"><div class="nt">تم تصحيح واجبك "المشروع التطبيقي" — درجتك: 87/100</div><div class="ns">منذ 5 ساعات • د. هشام الرعيني</div></div><div class="ni-badge"></div></div>
+            <div class="notif-item"><div class="ni-icon" style="background:rgba(34,197,94,0.1)">✅</div><div class="ni-text"><div class="nt">أكملت الدرس: Provider Pattern المتقدم</div><div class="ns">أمس • الوحدة 3</div></div></div>
+            <div class="notif-item"><div class="ni-icon" style="background:rgba(124,58,237,0.1)">📅</div><div class="ni-text"><div class="nt">تذكير: جلسة مباشرة غداً الساعة 7 مساءً</div><div class="ns">أمس • الذكاء الاصطناعي</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/notifications?page={n}&type={type}</div><div class="api-desc">قائمة الإشعارات مع Filtering والـ Pagination</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/notifications/{id}/read</div><div class="api-desc">وضع إشعار كـ "مقروء"</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/notifications/read-all</div><div class="api-desc">وضع جميع الإشعارات كـ "مقروءة"</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/notifications/register-device</div><div class="api-desc">Body: {fcm_token, platform} → تسجيل جهاز لاستقبال Push Notifications</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card" id="s-settings">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">15</div>
+        <div><h3>Settings Screen</h3><div class="sub">إعدادات التطبيق والحساب</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div class="sb sb-light"><span style="font-size:14px;font-weight:800">الإعدادات</span></div>
+            <div class="settings-list">
+              <div style="display:flex;align-items:center;gap:10px;background:var(--blue);border-radius:12px;padding:12px 14px;margin-bottom:12px">
+                <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:white">إ</div>
+                <div><div style="color:white;font-size:13px;font-weight:700">إبراهيم الرعيني</div><div style="color:rgba(255,255,255,0.7);font-size:10px">ibrahim@itqan.edu</div></div>
+                <div style="margin-right:auto;color:rgba(255,255,255,0.7);font-size:14px">←</div>
+              </div>
+              <div class="setting-group">
+                <div class="setting-group-title">الحساب</div>
+                <div class="setting-item"><div class="si-icon-wrap" style="background:rgba(10,110,189,0.1)">🔐</div><div class="si-info"><div class="si-title">كلمة المرور</div><div class="si-sub">تغيير كلمة المرور</div></div><div class="si-arrow">←</div></div>
+                <div class="setting-item"><div class="si-icon-wrap" style="background:rgba(34,197,94,0.1)">🌍</div><div class="si-info"><div class="si-title">اللغة</div><div class="si-sub">العربية</div></div><div class="si-arrow">←</div></div>
+              </div>
+              <div class="setting-group">
+                <div class="setting-group-title">الإشعارات</div>
+                <div class="setting-item"><div class="si-icon-wrap" style="background:rgba(239,68,68,0.1)">🔴</div><div class="si-info"><div class="si-title">الجلسات المباشرة</div><div class="si-sub">إشعار قبل 15 دقيقة</div></div><div class="toggle on"></div></div>
+                <div class="setting-item"><div class="si-icon-wrap" style="background:rgba(245,166,35,0.1)">📝</div><div class="si-info"><div class="si-title">تصحيح الواجبات</div></div><div class="toggle on"></div></div>
+                <div class="setting-item"><div class="si-icon-wrap" style="background:rgba(124,58,237,0.1)">🏆</div><div class="si-info"><div class="si-title">الإنجازات الجديدة</div></div><div class="toggle off"></div></div>
+              </div>
+              <div class="setting-group">
+                <div class="setting-group-title">التطبيق</div>
+                <div class="setting-item"><div class="si-icon-wrap" style="background:rgba(10,110,189,0.1)">📥</div><div class="si-info"><div class="si-title">التحميل التلقائي</div><div class="si-sub">على WiFi فقط</div></div><div class="toggle on"></div></div>
+                <div class="setting-item"><div class="si-icon-wrap" style="background:rgba(0,0,0,0.06)">🌙</div><div class="si-info"><div class="si-title">الوضع الليلي</div></div><div class="toggle off"></div></div>
+              </div>
+              <div style="padding:0;border-radius:12px;overflow:hidden;border:1px solid rgba(239,68,68,0.2)">
+                <div class="setting-item" style="color:var(--red)"><div class="si-icon-wrap" style="background:rgba(239,68,68,0.08)">🚪</div><div class="si-info"><div class="si-title" style="color:var(--red)">تسجيل الخروج</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/settings</div><div class="api-desc">إعدادات المستخدم الحالية: اللغة، الإشعارات، التحميل</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/student/settings</div><div class="api-desc">Body: {notifications_live, notifications_grades, dark_mode, language, ...}</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/auth/change-password</div><div class="api-desc">Body: {current_password, new_password}</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FULL API REFERENCE ═══════════════════════════════ -->
+<section class="api-full" id="api-auth">
+  <div class="section-heading">
+    <div class="section-num teal">📋</div>
+    <div class="section-title-text">
+      <h2>مرجع الـ APIs الكامل — Oracle APEX REST</h2>
+      <p>جميع الـ Endpoints المطلوبة مصنفة حسب الوحدة — يُبنى كل منها في Oracle APEX كـ RESTful Web Service</p>
+    </div>
+  </div>
+
+  <!-- AUTH MODULE -->
+  <div class="api-module" id="api-auth">
+    <div class="api-module-hdr">
+      <div class="api-module-icon">🔑</div>
+      <div><div class="api-module-title">وحدة المصادقة — Authentication Module</div><div class="api-module-desc">تسجيل الدخول، التسجيل، إدارة الـ JWT Tokens</div></div>
+      <div class="api-module-count">8 APIs</div>
+    </div>
+    <table class="api-table">
+      <thead><tr><th>Method</th><th>Endpoint</th><th>الوصف</th><th>المعاملات</th><th>Auth</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/login</td><td class="desc-cell">تسجيل الدخول بالبريد وكلمة المرور → يُرجع Access + Refresh Tokens</td><td class="param-cell">email, password</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/register</td><td class="desc-cell">إنشاء حساب جديد للطالب أو المعلم</td><td class="param-cell">name, email, password, role</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/refresh-token</td><td class="desc-cell">تجديد Access Token منتهي الصلاحية</td><td class="param-cell">refresh_token</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/logout</td><td class="desc-cell">إبطال الـ Token الحالي وإلغاء تسجيل الجهاز</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/forgot-password</td><td class="desc-cell">إرسال OTP للبريد لإعادة تعيين كلمة المرور</td><td class="param-cell">email</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/reset-password</td><td class="desc-cell">تعيين كلمة مرور جديدة بعد التحقق من OTP</td><td class="param-cell">otp, new_password</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/verify-email</td><td class="desc-cell">التحقق من البريد الإلكتروني عبر رمز OTP</td><td class="param-cell">email, otp</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/auth/social-login</td><td class="desc-cell">تسجيل الدخول عبر Google أو Apple</td><td class="param-cell">provider, token</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COURSES MODULE -->
+  <div class="api-module" id="api-courses">
+    <div class="api-module-hdr">
+      <div class="api-module-icon">📚</div>
+      <div><div class="api-module-title">وحدة الدورات — Courses Module</div><div class="api-module-desc">كتالوج الدورات، المحتوى، التقدم، التقييمات</div></div>
+      <div class="api-module-count">16 APIs</div>
+    </div>
+    <table class="api-table">
+      <thead><tr><th>Method</th><th>Endpoint</th><th>الوصف</th><th>المعاملات</th><th>Auth</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/courses</td><td class="desc-cell">قائمة الدورات مع Filtering وPagination</td><td class="param-cell">category, sort, page, limit, q</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/courses/{id}</td><td class="desc-cell">تفاصيل دورة كاملة مع بيانات المعلم والتقييمات</td><td class="param-cell">id</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/courses/{id}/curriculum</td><td class="desc-cell">المنهج الكامل: الوحدات والدروس مع حالة كل عنصر للطالب</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/courses/{id}/enroll</td><td class="desc-cell">تسجيل الطالب في الدورة</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/courses/featured</td><td class="desc-cell">الدورات المميزة للـ Banner الرئيسي</td><td class="param-cell">—</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/courses/recommended</td><td class="desc-cell">دورات موصى بها مخصصة للطالب</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/courses/search</td><td class="desc-cell">بحث نصي في الدورات والمعلمين والمحتوى</td><td class="param-cell">q, filters</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/categories</td><td class="desc-cell">قائمة التصنيفات مع عدد الدورات لكل منها</td><td class="param-cell">—</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/lessons/{id}/stream-url</td><td class="desc-cell">رابط بث فيديو مؤقت مشفر (Signed URL 2h)</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/lessons/{id}/progress</td><td class="desc-cell">تحديث تقدم مشاهدة الدرس الحالي</td><td class="param-cell">watched_seconds, is_complete</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/lessons/{id}/attachments</td><td class="desc-cell">الملفات المرفقة بالدرس (PDF, Slides, Code)</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/lessons/{id}/notes</td><td class="desc-cell">إضافة ملاحظة مرتبطة بلحظة زمنية في الفيديو</td><td class="param-cell">timestamp_sec, text</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/lessons/{id}/notes</td><td class="desc-cell">جلب ملاحظات الطالب لدرس معين</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/enrolled-courses</td><td class="desc-cell">الدورات المسجل فيها مع نسبة التقدم لكل دورة</td><td class="param-cell">status, page</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/progress/{course_id}</td><td class="desc-cell">التقدم التفصيلي في دورة: الدروس، الاختبارات، الواجبات</td><td class="param-cell">course_id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/courses/{id}/reviews</td><td class="desc-cell">إضافة تقييم ومراجعة للدورة</td><td class="param-cell">rating (1-5), comment</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LIVE MODULE -->
+  <div class="api-module" id="api-live">
+    <div class="api-module-hdr">
+      <div class="api-module-icon">📡</div>
+      <div><div class="api-module-title">وحدة الجلسات المباشرة — Live Sessions Module</div><div class="api-module-desc">إدارة البث المباشر، المشاركين، الشات، والاختبارات الفورية</div></div>
+      <div class="api-module-count">10 APIs</div>
+    </div>
+    <table class="api-table">
+      <thead><tr><th>Method</th><th>Endpoint</th><th>الوصف</th><th>المعاملات</th><th>Auth</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/live-sessions/create</td><td class="desc-cell">المعلم ينشئ جلسة مباشرة جديدة → يُرجع session_id وروابط الاتصال</td><td class="param-cell">course_id, title, scheduled_at</td><td><span class="auth-badge auth-admin">Teacher</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/live-sessions/active</td><td class="desc-cell">الجلسات الحية الآن المرتبطة بدورات الطالب</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/live-sessions/{id}/join</td><td class="desc-cell">الطالب ينضم → يُرجع Agora SDK credentials وAgora RTM Token</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/live-sessions/{id}/participants</td><td class="desc-cell">قائمة المشاركين الحاليين مع حالة الصوت والكاميرا</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/live-sessions/{id}/end</td><td class="desc-cell">إنهاء الجلسة وبدء معالجة التسجيل في الخلفية</td><td class="param-cell">id</td><td><span class="auth-badge auth-admin">Teacher</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/live-sessions/{id}/recording</td><td class="desc-cell">رابط تسجيل الجلسة بعد المعالجة (متاح خلال 30 دقيقة)</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/live-sessions/{id}/quiz/launch</td><td class="desc-cell">المعلم يُطلق اختباراً فورياً → يُرسل Agora RTM event لجميع المشاركين</td><td class="param-cell">quiz_id, duration_seconds</td><td><span class="auth-badge auth-admin">Teacher</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/live-sessions/{id}/theme</td><td class="desc-cell">تغيير ثيم الجلسة في الوقت الفعلي لجميع الشاشات</td><td class="param-cell">theme_id</td><td><span class="auth-badge auth-admin">Teacher</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/live-sessions/{id}/raise-hand</td><td class="desc-cell">الطالب يرفع يده → إشعار Agora RTM للمعلم</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/live-sessions/upcoming</td><td class="desc-cell">الجلسات القادمة المجدولة لدورات الطالب خلال 7 أيام</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ASSESSMENT MODULE -->
+  <div class="api-module" id="api-assess">
+    <div class="api-module-hdr">
+      <div class="api-module-icon">📊</div>
+      <div><div class="api-module-title">وحدة التقييم — Assessment Module</div><div class="api-module-desc">الاختبارات، الواجبات، الشهادات</div></div>
+      <div class="api-module-count">12 APIs</div>
+    </div>
+    <table class="api-table">
+      <thead><tr><th>Method</th><th>Endpoint</th><th>الوصف</th><th>المعاملات</th><th>Auth</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/quizzes/{id}/questions</td><td class="desc-cell">أسئلة الاختبار مع الخيارات (بدون الإجابات الصحيحة)</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/quizzes/{id}/submit</td><td class="desc-cell">تقديم إجابات الاختبار → يُرجع الدرجة والتصحيح التفصيلي</td><td class="param-cell">answers: [{q_id, option}]</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/quizzes/{id}/results</td><td class="desc-cell">نتائج جميع محاولات الطالب لهذا الاختبار</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/assignments/{id}</td><td class="desc-cell">تفاصيل الواجب: الوصف، الموعد، الدرجة، نوع الملفات المقبولة</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/assignments/{id}/upload</td><td class="desc-cell">رفع ملف الواجب (Multipart) → يُرجع file_url</td><td class="param-cell">file (multipart)</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/assignments/{id}/submit</td><td class="desc-cell">تسليم الواجب النهائي مع الملف والملاحظة</td><td class="param-cell">file_url, note</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/assignments/{id}/submission</td><td class="desc-cell">حالة تسليم الطالب: submitted_at, grade, teacher_comment</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/certificates</td><td class="desc-cell">قائمة شهادات الطالب الكاملة</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/certificates/{id}</td><td class="desc-cell">بيانات الشهادة الكاملة لتوليد PDF في Flutter</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/certificates/{id}/issue</td><td class="desc-cell">إصدار الشهادة عند بلوغ 90% — يُستدعى تلقائياً من PL/SQL Trigger</td><td class="param-cell">student_id, course_id</td><td><span class="auth-badge auth-admin">System</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/certificates/verify/{code}</td><td class="desc-cell">التحقق العام من صحة شهادة — لا يتطلب تسجيل دخول</td><td class="param-cell">code</td><td><span class="auth-badge auth-pub">Public</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/pending-assignments</td><td class="desc-cell">الواجبات المعلقة في جميع الدورات مرتبة بالموعد النهائي</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- USER MODULE -->
+  <div class="api-module" id="api-user">
+    <div class="api-module-hdr">
+      <div class="api-module-icon">👤</div>
+      <div><div class="api-module-title">وحدة المستخدم — User & Notifications Module</div><div class="api-module-desc">الملف الشخصي، الإحصائيات، الإشعارات، الإعدادات</div></div>
+      <div class="api-module-count">12 APIs</div>
+    </div>
+    <table class="api-table">
+      <thead><tr><th>Method</th><th>Endpoint</th><th>الوصف</th><th>المعاملات</th><th>Auth</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/dashboard</td><td class="desc-cell">لوحة تحكم الطالب: الإحصائيات الشهرية والإجمالية</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/profile</td><td class="desc-cell">الملف الشخصي الكامل مع الإنجازات والسلسلة</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb PUT">PUT</span></td><td class="endpoint-cell">/student/profile</td><td class="desc-cell">تحديث بيانات الملف الشخصي</td><td class="param-cell">name, bio, interests[]</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/student/profile/avatar</td><td class="desc-cell">رفع صورة الملف الشخصي (Multipart)</td><td class="param-cell">avatar (multipart)</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/achievements</td><td class="desc-cell">الإنجازات المفتوحة مع النقاط والتاريخ</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/learning-stats</td><td class="desc-cell">إحصائيات تفصيلية: الساعات اليومية، توزيع الفئات، الـ Streak</td><td class="param-cell">period: week|month|year</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/notifications</td><td class="desc-cell">قائمة الإشعارات مع Filtering والـ Pagination</td><td class="param-cell">type, page, limit</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb PUT">PUT</span></td><td class="endpoint-cell">/notifications/{id}/read</td><td class="desc-cell">وضع إشعار محدد كـ مقروء</td><td class="param-cell">id</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb PUT">PUT</span></td><td class="endpoint-cell">/notifications/read-all</td><td class="desc-cell">وضع جميع الإشعارات كـ مقروءة</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb POST">POST</span></td><td class="endpoint-cell">/notifications/register-device</td><td class="desc-cell">تسجيل جهاز لاستقبال Push Notifications (FCM)</td><td class="param-cell">fcm_token, platform</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb GET">GET</span></td><td class="endpoint-cell">/student/settings</td><td class="desc-cell">إعدادات المستخدم الحالية</td><td class="param-cell">—</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+        <tr><td><span class="mb PUT">PUT</span></td><td class="endpoint-cell">/student/settings</td><td class="desc-cell">تحديث إعدادات المستخدم (إشعارات، لغة، ثيم)</td><td class="param-cell">notifications_*, language, dark_mode, ...</td><td><span class="auth-badge auth-req">Bearer</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<!-- ─── FOOTER ─── -->
+
+<!-- ═══════════════════════════════ TEACHER DASHBOARD ═══════════════════════════════ -->
+<section class="section section-alt" id="s-teacher">
+  <div class="section-heading">
+    <div class="section-num purple">9</div>
+    <div class="section-title-text">
+      <h2>لوحة تحكم المعلم — Teacher Dashboard</h2>
+      <p>الشاشات الخاصة بالمعلم: إدارة الدورات، الطلاب، الجلسات المباشرة، ومراجعة الواجبات</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">T1</div>
+        <div><h3>Teacher Home</h3><div class="sub">لوحة التحكم الرئيسية للمعلم</div></div>
+        <div class="screen-type-badge" style="background:rgba(124,58,237,0.15);color:#A78BFA;border-color:rgba(124,58,237,0.3)">معلم</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div style="background:linear-gradient(160deg,#3730A3 0%,#4F46E5 60%,#7C3AED 100%);padding:40px 16px 20px;position:relative;overflow:hidden">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                <div><div style="color:rgba(255,255,255,0.65);font-size:11px">مرحباً أستاذ 👋</div><div style="color:white;font-size:18px;font-weight:800">د. هشام الرعيني</div></div>
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#D97706);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:white">هـ</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:800;color:white">12</div><div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px">دورة نشطة</div></div>
+                <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:800;color:white">2.4k</div><div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px">طالب مسجل</div></div>
+                <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:800;color:#FCD34D">4.9</div><div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px">متوسط التقييم</div></div>
+                <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:800;color:#6EE7B7">37</div><div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px">واجب للمراجعة</div></div>
+              </div>
+            </div>
+            <div style="padding:12px 14px">
+              <div style="font-size:13px;font-weight:800;margin-bottom:10px">📅 جلستك اليوم</div>
+              <div style="background:linear-gradient(135deg,#1A2A4A,#0D1A30);border-radius:12px;padding:14px;border:1px solid rgba(239,68,68,0.3)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+                  <div style="width:7px;height:7px;background:var(--red);border-radius:50%;animation:pulse 1s infinite"></div>
+                  <div style="color:var(--red);font-size:10px;font-weight:800">جلسة مجدولة</div>
+                  <div style="color:rgba(255,255,255,0.4);font-size:10px;margin-right:auto">7:00 مساءً</div>
+                </div>
+                <div style="color:white;font-size:12px;font-weight:700;margin-bottom:4px">Flutter — State Management (Provider)</div>
+                <div style="color:rgba(255,255,255,0.5);font-size:10px;margin-bottom:10px">👥 47 طالب • الجلسة 8 من 12</div>
+                <div style="display:flex;gap:8px">
+                  <button style="flex:1;background:var(--red);color:white;border:none;border-radius:50px;padding:9px;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif">🔴 بدء البث</button>
+                  <button style="flex:1;background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:9px;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif">⚙️ الإعداد</button>
+                </div>
+              </div>
+            </div>
+            <div style="padding:0 14px 10px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <div style="font-size:13px;font-weight:800">📝 واجبات للمراجعة</div>
+                <div style="font-size:10px;color:var(--blue);font-weight:600">عرض الكل (37)</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:7px">
+                <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px">
+                  <div style="width:34px;height:34px;border-radius:50%;background:rgba(124,58,237,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--purple)">إ</div>
+                  <div style="flex:1"><div style="font-size:11px;font-weight:700">إبراهيم الرعيني</div><div style="font-size:9px;color:var(--text2)">المشروع التطبيقي • 2 ساعة</div></div>
+                  <button style="background:var(--blue-light);color:var(--blue);border:none;border-radius:50px;padding:5px 12px;font-size:10px;font-weight:700;font-family:'Cairo',sans-serif">مراجعة</button>
+                </div>
+                <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px">
+                  <div style="width:34px;height:34px;border-radius:50%;background:rgba(236,72,153,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#EC4899">س</div>
+                  <div style="flex:1"><div style="font-size:11px;font-weight:700">سارة محمد</div><div style="font-size:9px;color:var(--text2)">المشروع التطبيقي • 5 ساعات</div></div>
+                  <button style="background:var(--blue-light);color:var(--blue);border:none;border-radius:50px;padding:5px 12px;font-size:10px;font-weight:700;font-family:'Cairo',sans-serif">مراجعة</button>
+                </div>
+              </div>
+            </div>
+            <div class="bnav">
+              <div class="bni active"><div class="bni-icon">🏠</div>الرئيسية</div>
+              <div class="bni"><div class="bni-icon">📚</div>دوراتي</div>
+              <div class="bni"><div class="bni-icon">👥</div>طلابي</div>
+              <div class="bni"><div class="bni-icon">📊</div>تحليلات</div>
+              <div class="bni"><div class="bni-icon">👤</div>حسابي</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>لوحة المعلم تُحمَّل بيانات مختلفة تماماً بناءً على الـ role في JWT</div>
+          <div class="flow-step"><div class="step-dot">2</div>إحصائيات الدورات والطلاب في استدعاء واحد مُجمَّع من APEX</div>
+          <div class="flow-step"><div class="step-dot">3</div>زر "بدء البث" ينشئ session في Media Server ويُرجع RTMP endpoint</div>
+          <div class="flow-step"><div class="step-dot">4</div>قائمة الواجبات مرتبة بالأحدث مع Badge عدد غير المراجعة</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/teacher/dashboard</div><div class="api-desc">إحصائيات المعلم: الدورات، الطلاب، التقييم، الواجبات المعلقة</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/teacher/pending-assignments</div><div class="api-desc">الواجبات المقدمة التي تنتظر التصحيح مرتبة بالأحدث</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/teacher/assignments/{submission_id}/grade</div><div class="api-desc">Body: {grade, comment} → تصحيح الواجب وإرسال إشعار للطالب</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">T2</div>
+        <div><h3>Grade Assignment</h3><div class="sub">مراجعة وتصحيح الواجب</div></div>
+        <div class="screen-type-badge" style="background:rgba(124,58,237,0.15);color:#A78BFA;border-color:rgba(124,58,237,0.3)">معلم</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div style="background:white;padding:40px 14px 14px;border-bottom:1px solid var(--border)">
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px">مراجعة الواجب</div>
+              <div style="font-size:11px;color:var(--text2)">المشروع التطبيقي — إبراهيم الرعيني</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:white;border-bottom:1px solid var(--border)">
+              <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--purple),#6D28D9);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:white">إ</div>
+              <div><div style="font-size:12px;font-weight:700">إبراهيم الرعيني</div><div style="font-size:10px;color:var(--text2)">سُلِّم قبل ساعتين</div></div>
+              <div style="margin-right:auto;background:rgba(34,197,94,0.1);color:var(--green);font-size:10px;font-weight:700;padding:4px 10px;border-radius:50px;border:1px solid rgba(34,197,94,0.2)">في الوقت ✓</div>
+            </div>
+            <div style="padding:14px">
+              <div style="font-size:11px;font-weight:700;margin-bottom:8px">📁 الملف المُسلَّم</div>
+              <div style="background:var(--blue-light);border:1.5px solid rgba(10,110,189,0.2);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                <div style="font-size:26px">📦</div>
+                <div><div style="font-size:11px;font-weight:700;color:var(--blue)">todo_app_project.zip</div><div style="font-size:9px;color:var(--text3)">2.4 MB</div></div>
+                <div style="margin-right:auto;font-size:18px;color:var(--blue)">⬇</div>
+              </div>
+              <div style="background:var(--bg);border-radius:10px;padding:10px;margin-bottom:12px">
+                <div style="font-size:10px;font-weight:700;color:var(--text2);margin-bottom:3px">💬 ملاحظة الطالب</div>
+                <div style="font-size:10px;color:var(--text2);line-height:1.6">أضفت Dark Mode إضافية وجربت SharedPreferences للحفظ المحلي.</div>
+              </div>
+              <div style="font-size:11px;font-weight:700;margin-bottom:8px">⭐ الدرجة من 100</div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                <div style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:white">87</div>
+                <input type="range" min="0" max="100" value="87" style="flex:1;accent-color:var(--blue)">
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+                <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center"><div style="font-size:13px;font-weight:800;color:var(--green)">25/25</div><div style="font-size:8px;color:var(--text3)">وظيفية التطبيق</div></div>
+                <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center"><div style="font-size:13px;font-weight:800;color:var(--blue)">22/25</div><div style="font-size:8px;color:var(--text3)">جودة الكود</div></div>
+                <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center"><div style="font-size:13px;font-weight:800;color:var(--orange)">20/25</div><div style="font-size:8px;color:var(--text3)">واجهة المستخدم</div></div>
+                <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center"><div style="font-size:13px;font-weight:800;color:var(--purple)">20/25</div><div style="font-size:8px;color:var(--text3)">State Management</div></div>
+              </div>
+              <textarea class="input-field" rows="3" style="resize:none;font-size:11px;margin-bottom:10px">عمل ممتاز! الكود منظم وإضافة Dark Mode مبادرة رائعة.</textarea>
+              <button class="btn-main" style="background:linear-gradient(135deg,var(--green),#15803D)">✅ حفظ وإرسال التقييم</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>المعلم يفتح الواجب، يرى ملف الطالب وملاحظته</div>
+          <div class="flow-step"><div class="step-dot">2</div>Slider لتحديد الدرجة + Rubric تفصيلية للمعايير</div>
+          <div class="flow-step"><div class="step-dot">3</div>الحفظ: يُحدَّث Oracle DB + Push Notification فورية للطالب</div>
+          <div class="flow-step"><div class="step-dot">4</div>إذا بلغت نسبة الطالب ≥90%: تُصدر شهادة تلقائياً من PL/SQL Trigger</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/teacher/assignments/{submission_id}</div><div class="api-desc">تفاصيل تسليم الطالب: الملف، الملاحظة، بيانات الطالب</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/teacher/assignments/{submission_id}/grade</div><div class="api-desc">Body: {total_grade, rubric:{}, comment} → حفظ التقييم</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMMUNITY + PROGRESS -->
+<section class="section" id="s-community">
+  <div class="section-heading">
+    <div class="section-num teal">10</div>
+    <div class="section-title-text">
+      <h2>المجتمع والمناقشات + تحليلات التقدم</h2>
+      <p>منتدى النقاش لكل دورة وشاشة التحليلات التفصيلية لتقدم الطالب</p>
+    </div>
+  </div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">16</div>
+        <div><h3>Community</h3><div class="sub">منتدى النقاش والمجتمع</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div style="background:white;padding:40px 14px 14px;border-bottom:1px solid var(--border)">
+              <div style="font-size:18px;font-weight:800;margin-bottom:10px">💬 المجتمع</div>
+              <div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none">
+                <div style="padding:7px 14px;border-radius:50px;font-size:11px;font-weight:600;background:var(--blue);color:white;white-space:nowrap">جميع الدورات</div>
+                <div style="padding:7px 14px;border-radius:50px;font-size:11px;font-weight:600;background:var(--bg);color:var(--text2);white-space:nowrap;border:1.5px solid var(--border)">Flutter</div>
+                <div style="padding:7px 14px;border-radius:50px;font-size:11px;font-weight:600;background:var(--bg);color:var(--text2);white-space:nowrap;border:1.5px solid var(--border)">Oracle</div>
+                <div style="padding:7px 14px;border-radius:50px;font-size:11px;font-weight:600;background:var(--bg);color:var(--text2);white-space:nowrap;border:1.5px solid var(--border)">AI</div>
+              </div>
+            </div>
+            <div style="padding:10px 14px;background:white;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center">
+              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--orange),#D97706);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white;flex-shrink:0">إ</div>
+              <div style="flex:1;background:var(--bg);border-radius:50px;padding:8px 12px;font-size:11px;color:var(--text3)">شارك سؤالاً أو فكرة...</div>
+              <div style="width:30px;height:30px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:white">✏️</div>
+            </div>
+            <div style="padding:10px 14px;display:flex;flex-direction:column;gap:10px">
+              <div style="background:white;border:1px solid rgba(245,166,35,0.3);border-radius:12px;overflow:hidden">
+                <div style="background:rgba(245,166,35,0.08);padding:5px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(245,166,35,0.15)">
+                  <span style="font-size:11px">📌</span><span style="font-size:10px;font-weight:700;color:var(--orange)">منشور مثبّت من المعلم</span>
+                </div>
+                <div style="padding:10px">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+                    <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:white">هـ</div>
+                    <div><div style="font-size:10px;font-weight:700">د. هشام الرعيني 🎓</div><div style="font-size:9px;color:var(--text3)">منذ يومين</div></div>
+                  </div>
+                  <div style="font-size:11px;line-height:1.6;color:var(--text2)">مواد الجلسة 8 متاحة الآن! حمّل كود المثال والـ Slides من المرفقات 📎</div>
+                  <div style="display:flex;gap:10px;margin-top:8px;font-size:10px;color:var(--text3)"><span>❤️ 24</span><span>💬 8 تعليق</span></div>
+                </div>
+              </div>
+              <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:10px">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+                  <div style="width:28px;height:28px;border-radius:50%;background:rgba(124,58,237,0.1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--purple)">إ</div>
+                  <div><div style="font-size:10px;font-weight:700">إبراهيم الرعيني</div><div style="font-size:9px;color:var(--text3)">منذ 3 ساعات</div></div>
+                  <div style="margin-right:auto;background:var(--blue-light);color:var(--blue);font-size:9px;font-weight:700;padding:2px 8px;border-radius:50px">❓ سؤال</div>
+                </div>
+                <div style="font-size:11px;line-height:1.6;color:var(--text2);margin-bottom:7px">كيف أتعامل مع ChangeNotifier عندما يكون لدي state معقد بعدة قوائم؟</div>
+                <div style="background:var(--bg);border-radius:8px;padding:7px 9px;margin-bottom:7px">
+                  <div style="font-size:9px;color:var(--blue);font-weight:700;margin-bottom:3px">✅ أفضل إجابة — د. هشام الرعيني</div>
+                  <div style="font-size:10px;color:var(--text2);line-height:1.5">يمكنك تقسيم الـ state إلى Providers متعددة أصغر وأكثر تخصصاً...</div>
+                </div>
+                <div style="display:flex;gap:10px;font-size:10px;color:var(--text3)"><span>❤️ 12</span><span>💬 5 إجابة</span><span style="margin-right:auto;color:var(--blue)">شاهد الإجابات →</span></div>
+              </div>
+              <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:10px">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+                  <div style="width:28px;height:28px;border-radius:50%;background:rgba(236,72,153,0.1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#EC4899">س</div>
+                  <div><div style="font-size:10px;font-weight:700">سارة محمد</div><div style="font-size:9px;color:var(--text3)">منذ 6 ساعات</div></div>
+                  <div style="margin-right:auto;background:rgba(34,197,94,0.1);color:var(--green);font-size:9px;font-weight:700;padding:2px 8px;border-radius:50px">💡 مشاركة</div>
+                </div>
+                <div style="font-size:11px;line-height:1.6;color:var(--text2)">شاركت مشروع ToDo App المكتمل على GitHub! 🚀</div>
+                <div style="display:flex;gap:10px;margin-top:8px;font-size:10px;color:var(--text3)"><span>❤️ 31</span><span>💬 14 تعليق</span></div>
+              </div>
+            </div>
+            <div class="bnav"><div class="bni"><div class="bni-icon">🏠</div>الرئيسية</div><div class="bni"><div class="bni-icon">📚</div>دوراتي</div><div class="bni"><div class="bni-icon">🔍</div>استكشف</div><div class="bni active"><div class="bni-icon">💬</div>مجتمع</div><div class="bni"><div class="bni-icon">👤</div>حسابي</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>المنشورات بـ Pagination (10/صفحة) مرتبة بالأحدث أو الأكثر تفاعلاً</div>
+          <div class="flow-step"><div class="step-dot">2</div>المعلم يثبّت المنشورات ويحدد "أفضل إجابة"</div>
+          <div class="flow-step"><div class="step-dot">3</div>إشعار فوري لصاحب السؤال عند الرد عليه</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/community/posts?course_id={id}&page={n}</div><div class="api-desc">منشورات المنتدى مع الفلترة والـ Pagination</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/community/posts</div><div class="api-desc">Body: {course_id, type, content} → نشر سؤال أو مشاركة</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/community/posts/{id}/reply</div><div class="api-desc">Body: {content} → الرد على منشور</div></div></div>
+          <div class="api-item"><span class="method-badge POST">POST</span><div><div class="api-endpoint">/community/posts/{id}/like</div><div class="api-desc">إعجاب/إلغاء إعجاب بمنشور</div></div></div>
+          <div class="api-item"><span class="method-badge PUT">PUT</span><div><div class="api-endpoint">/community/posts/{id}/best-answer</div><div class="api-desc">المعلم يحدد أفضل إجابة (Teacher only)</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-header">
+        <div class="screen-num-badge">17</div>
+        <div><h3>Progress Analytics</h3><div class="sub">تحليلات التقدم التفصيلية</div></div>
+        <div class="screen-type-badge both">كلا النمطين</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-inner">
+            <div style="background:white;padding:40px 14px 12px;border-bottom:1px solid var(--border)">
+              <div style="font-size:18px;font-weight:800">📊 تحليلات التعلم</div>
+            </div>
+            <div style="padding:10px 14px;background:white;border-bottom:1px solid var(--border);display:flex;gap:6px">
+              <div style="flex:1;background:var(--blue);color:white;border-radius:8px;padding:6px;text-align:center;font-size:11px;font-weight:700">أسبوع</div>
+              <div style="flex:1;background:var(--bg);color:var(--text2);border-radius:8px;padding:6px;text-align:center;font-size:11px;font-weight:600">شهر</div>
+              <div style="flex:1;background:var(--bg);color:var(--text2);border-radius:8px;padding:6px;text-align:center;font-size:11px;font-weight:600">3 أشهر</div>
+            </div>
+            <div style="padding:14px">
+              <div style="font-size:12px;font-weight:700;margin-bottom:10px">⏱️ ساعات التعلم الأسبوعية</div>
+              <div style="background:white;border-radius:12px;padding:12px;border:1px solid var(--border)">
+                <div style="display:flex;align-items:flex-end;gap:5px;height:70px;margin-bottom:8px">
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:100%;background:var(--blue);border-radius:4px 4px 0 0;height:35px;opacity:0.5"></div><div style="font-size:8px;color:var(--text3)">أح</div></div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:100%;background:var(--blue);border-radius:4px 4px 0 0;height:55px"></div><div style="font-size:8px;color:var(--text3)">إث</div></div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:100%;background:var(--blue);border-radius:4px 4px 0 0;height:40px;opacity:0.7"></div><div style="font-size:8px;color:var(--text3)">ثل</div></div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:100%;background:var(--blue);border-radius:4px 4px 0 0;height:68px"></div><div style="font-size:8px;color:var(--text3)">أر</div></div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:100%;background:var(--blue);border-radius:4px 4px 0 0;height:48px;opacity:0.8"></div><div style="font-size:8px;color:var(--text3)">خم</div></div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:100%;background:var(--teal);border-radius:4px 4px 0 0;height:70px"></div><div style="font-size:8px;color:var(--text2);font-weight:700">جم</div></div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:100%;background:var(--blue);border-radius:4px 4px 0 0;height:18px;opacity:0.3"></div><div style="font-size:8px;color:var(--text3)">سب</div></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:10px">
+                  <div><span style="color:var(--text3)">هذا الأسبوع: </span><span style="font-weight:700;color:var(--blue)">22.5 ساعة</span></div>
+                  <div style="color:var(--green)">↑ 18%</div>
+                </div>
+              </div>
+              <div style="font-size:12px;font-weight:700;margin:12px 0 8px">📚 توزيع التعلم بالتخصص</div>
+              <div style="background:white;border-radius:12px;padding:12px;border:1px solid var(--border);display:flex;flex-direction:column;gap:8px">
+                <div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px"><span style="font-weight:600">Flutter & Mobile</span><span style="color:var(--blue);font-weight:700">42%</span></div><div style="height:5px;background:var(--bg);border-radius:50px;overflow:hidden"><div style="height:100%;width:42%;background:var(--blue);border-radius:50px"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px"><span style="font-weight:600">Oracle & Database</span><span style="color:var(--orange);font-weight:700">28%</span></div><div style="height:5px;background:var(--bg);border-radius:50px;overflow:hidden"><div style="height:100%;width:28%;background:var(--orange);border-radius:50px"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px"><span style="font-weight:600">AI & ML</span><span style="color:var(--purple);font-weight:700">22%</span></div><div style="height:5px;background:var(--bg);border-radius:50px;overflow:hidden"><div style="height:100%;width:22%;background:var(--purple);border-radius:50px"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px"><span style="font-weight:600">Cybersecurity</span><span style="color:var(--green);font-weight:700">8%</span></div><div style="height:5px;background:var(--bg);border-radius:50px;overflow:hidden"><div style="height:100%;width:8%;background:var(--green);border-radius:50px"></div></div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+                <div style="background:white;border-radius:12px;padding:12px;border:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:900;color:var(--green)">88%</div><div style="font-size:9px;color:var(--text3);margin-top:2px">متوسط الاختبارات</div></div>
+                <div style="background:white;border-radius:12px;padding:12px;border:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:900;color:var(--orange)">🔥 23</div><div style="font-size:9px;color:var(--text3);margin-top:2px">يوم سلسلة</div></div>
+                <div style="background:white;border-radius:12px;padding:12px;border:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:900;color:var(--blue)">14</div><div style="font-size:9px;color:var(--text3);margin-top:2px">اختبار مكتمل</div></div>
+                <div style="background:white;border-radius:12px;padding:12px;border:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:900;color:var(--purple)">1,240</div><div style="font-size:9px;color:var(--text3);margin-top:2px">نقطة إجمالية</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desc-box">
+        <div class="desc-title">⚙️ آلية العمل</div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-dot">1</div>الرسوم البيانية مبنية من بيانات مُجمَّعة بـ PL/SQL في Oracle</div>
+          <div class="flow-step"><div class="step-dot">2</div>الفترة الزمنية تُغيّر معامل period في الـ API</div>
+          <div class="flow-step"><div class="step-dot">3</div>Flutter تبني Bar Chart بـ fl_chart package</div>
+          <div class="flow-step"><div class="step-dot">4</div>البيانات تُحدَّث يومياً بـ Scheduled Job في Oracle</div>
+        </div>
+      </div>
+      <div class="api-section">
+        <div class="api-section-title">🔌 APIs المطلوبة</div>
+        <div class="api-list">
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/learning-stats?period=week</div><div class="api-desc">ساعات التعلم اليومية للفترة المحددة</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/subject-distribution?period=week</div><div class="api-desc">توزيع ساعات التعلم بالتخصص كنسب مئوية</div></div></div>
+          <div class="api-item"><span class="method-badge GET">GET</span><div><div class="api-endpoint">/student/quiz-performance</div><div class="api-desc">متوسط الدرجات، عدد الاختبارات، أفضل وأضعف المجالات</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEBSOCKET EVENTS -->
+<section class="section section-alt" id="websocket">
+  <div class="section-heading">
+    <div class="section-num" style="background:var(--purple)">⚡</div>
+    <div class="section-title-text">
+      <h2>أحداث الاتصال الفوري — Agora RTM Events</h2>
+      <p>جميع الأحداث المتبادلة بين التطبيق والخادم في الوقت الفعلي للجلسات المباشرة والإشعارات</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div class="api-module">
+      <div class="api-module-hdr">
+        <div class="api-module-icon">📤</div>
+        <div><div class="api-module-title">من التطبيق إلى Agora RTM</div><div class="api-module-desc">الأحداث التي يُرسلها Flutter لـ Agora RTM</div></div>
+        <div class="api-module-count">12 Event</div>
+      </div>
+      <table class="api-table">
+        <thead><tr><th style="width:150px">Event Name</th><th>الغرض والبيانات المُرسَلة</th></tr></thead>
+        <tbody>
+          <tr><td class="endpoint-cell">join_session</td><td class="desc-cell">{session_id, user_token} — الانضمام لغرفة الجلسة</td></tr>
+          <tr><td class="endpoint-cell">leave_session</td><td class="desc-cell">{session_id} — مغادرة الغرفة</td></tr>
+          <tr><td class="endpoint-cell">send_message</td><td class="desc-cell">{session_id, text, type} — إرسال رسالة شات</td></tr>
+          <tr><td class="endpoint-cell">raise_hand</td><td class="desc-cell">{session_id, raised:bool} — رفع/خفض اليد</td></tr>
+          <tr><td class="endpoint-cell">submit_quiz_answer</td><td class="desc-cell">{quiz_id, question_id, answer} — إجابة اختبار فوري</td></tr>
+          <tr><td class="endpoint-cell">submit_poll</td><td class="desc-cell">{poll_id, option_id} — إجابة استطلاع رأي</td></tr>
+          <tr><td class="endpoint-cell">toggle_mic</td><td class="desc-cell">{session_id, muted:bool} — تشغيل/كتم الميكروفون</td></tr>
+          <tr><td class="endpoint-cell">toggle_camera</td><td class="desc-cell">{session_id, enabled:bool} — تشغيل/إيقاف الكاميرا</td></tr>
+          <tr><td class="endpoint-cell">request_speak</td><td class="desc-cell">{session_id} — طلب إذن الكلام من المعلم</td></tr>
+          <tr><td class="endpoint-cell">reaction</td><td class="desc-cell">{session_id, emoji:'👍'|'❤️'|'👏'} — تفاعل سريع</td></tr>
+          <tr><td class="endpoint-cell">heartbeat</td><td class="desc-cell">{session_id} — إشارة حضور كل 30 ثانية</td></tr>
+          <tr><td class="endpoint-cell">whiteboard_draw</td><td class="desc-cell">{session_id, points[], color, size} — رسم على السبورة</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="api-module">
+      <div class="api-module-hdr">
+        <div class="api-module-icon">📥</div>
+        <div><div class="api-module-title">من Agora RTM إلى التطبيق</div><div class="api-module-desc">الأحداث التي يستقبلها Flutter من Agora RTM</div></div>
+        <div class="api-module-count">14 Event</div>
+      </div>
+      <table class="api-table">
+        <thead><tr><th style="width:170px">Event Name</th><th>الغرض والبيانات المُستلَمة</th></tr></thead>
+        <tbody>
+          <tr><td class="endpoint-cell">session_started</td><td class="desc-cell">{session_id, teacher_name, agora_config} — الجلسة بدأت</td></tr>
+          <tr><td class="endpoint-cell">session_ended</td><td class="desc-cell">{session_id, recording_url} — الجلسة انتهت</td></tr>
+          <tr><td class="endpoint-cell">new_message</td><td class="desc-cell">{message_id, user, text, timestamp} — رسالة جديدة</td></tr>
+          <tr><td class="endpoint-cell">participant_joined</td><td class="desc-cell">{user_id, name, avatar} — مشارك انضم</td></tr>
+          <tr><td class="endpoint-cell">participant_left</td><td class="desc-cell">{user_id} — مشارك غادر</td></tr>
+          <tr><td class="endpoint-cell">quiz_launched</td><td class="desc-cell">{quiz_id, question, options, duration_sec} — اختبار فوري</td></tr>
+          <tr><td class="endpoint-cell">quiz_results</td><td class="desc-cell">{quiz_id, correct_answer, scores[]} — نتائج الاختبار</td></tr>
+          <tr><td class="endpoint-cell">poll_launched</td><td class="desc-cell">{poll_id, question, options[]} — استطلاع رأي</td></tr>
+          <tr><td class="endpoint-cell">poll_update</td><td class="desc-cell">{poll_id, results:{option:count}} — تحديث نتائج الاستطلاع حياً</td></tr>
+          <tr><td class="endpoint-cell">theme_changed</td><td class="desc-cell">{theme_id, colors:{}} — تغيير ثيم الجلسة</td></tr>
+          <tr><td class="endpoint-cell">screen_share_started</td><td class="desc-cell">{stream_url} — المعلم بدأ مشاركة الشاشة</td></tr>
+          <tr><td class="endpoint-cell">hand_raised</td><td class="desc-cell">{user_id, name} — طالب رفع يده (للمعلم)</td></tr>
+          <tr><td class="endpoint-cell">speak_granted</td><td class="desc-cell">{user_id} — المعلم أعطى إذن الكلام</td></tr>
+          <tr><td class="endpoint-cell">notification_push</td><td class="desc-cell">{type, title, body, data} — إشعار فوري عام</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DB SCHEMA -->
+<!-- SUMMARY TABLE -->
+<section class="section section-alt" id="summary">
+  <div class="section-heading">
+    <div class="section-num" style="background:var(--teal)">📋</div>
+    <div class="section-title-text">
+      <h2>الملخص الكامل — جدول مرجعي سريع</h2>
+      <p>جميع شاشات التطبيق مع أنماط التعلم والمستخدم وعدد الـ APIs لكل شاشة</p>
+    </div>
+  </div>
+  <div style="background:white;border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)">
+    <table class="api-table" style="width:100%">
+      <thead><tr><th style="width:40px">#</th><th>اسم الشاشة</th><th>نمط التعلم</th><th>المستخدم</th><th style="width:80px">عدد APIs</th><th>الوظيفة الرئيسية</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mb GET" style="font-size:9px">01</span></td><td class="endpoint-cell">Splash Screen</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">الجميع</td><td style="text-align:center;font-weight:700;color:var(--blue)">2</td><td class="desc-cell">التحقق من الـ Token وتوجيه المستخدم</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">02</span></td><td class="endpoint-cell">Onboarding</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">الجديد</td><td style="text-align:center;font-weight:700;color:var(--blue)">1</td><td class="desc-cell">تعريف المستخدم الجديد بالمنصة</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">03</span></td><td class="endpoint-cell">Login</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">الجميع</td><td style="text-align:center;font-weight:700;color:var(--blue)">4</td><td class="desc-cell">تسجيل الدخول بطرق متعددة</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">04</span></td><td class="endpoint-cell">Register</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">الجديد</td><td style="text-align:center;font-weight:700;color:var(--blue)">2</td><td class="desc-cell">إنشاء حساب طالب أو معلم</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">05</span></td><td class="endpoint-cell">Home Screen</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">5</td><td class="desc-cell">لوحة التحكم الرئيسية والإحصائيات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">06</span></td><td class="endpoint-cell">Explore Courses</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">3</td><td class="desc-cell">استكشاف وبحث وفلترة الدورات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">07</span></td><td class="endpoint-cell">Course Detail</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">5</td><td class="desc-cell">تفاصيل الدورة والمنهج والتقدم</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">08</span></td><td class="endpoint-cell">Video Player</td><td><span style="font-size:9px;background:rgba(34,197,94,0.1);color:var(--green);padding:2px 8px;border-radius:50px;font-weight:700">غير متزامن</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">6</td><td class="desc-cell">مشاهدة الفيديو مع الملاحظات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">09</span></td><td class="endpoint-cell">Live Session</td><td><span style="font-size:9px;background:rgba(239,68,68,0.1);color:var(--red);padding:2px 8px;border-radius:50px;font-weight:700">متزامن</span></td><td style="font-size:11px">الجميع</td><td style="text-align:center;font-weight:700;color:var(--blue)">6</td><td class="desc-cell">البث المباشر والشات والاختبارات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">10</span></td><td class="endpoint-cell">Quiz</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">4</td><td class="desc-cell">اختبارات تفاعلية مع تصحيح فوري</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">11</span></td><td class="endpoint-cell">Assignment</td><td><span style="font-size:9px;background:rgba(34,197,94,0.1);color:var(--green);padding:2px 8px;border-radius:50px;font-weight:700">غير متزامن</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">4</td><td class="desc-cell">رفع الواجبات ومتابعة التصحيح</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">12</span></td><td class="endpoint-cell">Certificates</td><td><span style="font-size:9px;background:rgba(245,166,35,0.1);color:var(--orange);padding:2px 8px;border-radius:50px;font-weight:700">إنجاز</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">4</td><td class="desc-cell">عرض ومشاركة وتحميل الشهادات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">13</span></td><td class="endpoint-cell">Profile</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">5</td><td class="desc-cell">الملف الشخصي والإنجازات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">14</span></td><td class="endpoint-cell">Notifications</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">الجميع</td><td style="text-align:center;font-weight:700;color:var(--blue)">4</td><td class="desc-cell">مركز الإشعارات والتنبيهات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">15</span></td><td class="endpoint-cell">Settings</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">الجميع</td><td style="text-align:center;font-weight:700;color:var(--blue)">3</td><td class="desc-cell">إعدادات الحساب والتطبيق</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">T1</span></td><td class="endpoint-cell">Teacher Dashboard</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">معلم</td><td style="text-align:center;font-weight:700;color:var(--blue)">3</td><td class="desc-cell">لوحة تحكم المعلم والإحصائيات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">T2</span></td><td class="endpoint-cell">Grade Assignment</td><td><span style="font-size:9px;background:rgba(34,197,94,0.1);color:var(--green);padding:2px 8px;border-radius:50px;font-weight:700">غير متزامن</span></td><td style="font-size:11px">معلم</td><td style="text-align:center;font-weight:700;color:var(--blue)">2</td><td class="desc-cell">مراجعة وتصحيح الواجبات</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">16</span></td><td class="endpoint-cell">Community</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">الجميع</td><td style="text-align:center;font-weight:700;color:var(--blue)">5</td><td class="desc-cell">منتدى المناقشات والمجتمع</td></tr>
+        <tr><td><span class="mb GET" style="font-size:9px">17</span></td><td class="endpoint-cell">Progress Analytics</td><td><span style="font-size:9px;background:rgba(124,58,237,0.1);color:var(--purple);padding:2px 8px;border-radius:50px;font-weight:700">كلا النمطين</span></td><td style="font-size:11px">طالب</td><td style="text-align:center;font-weight:700;color:var(--blue)">3</td><td class="desc-cell">تحليلات التعلم والإحصائيات</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px">
+    <div style="background:linear-gradient(135deg,var(--blue),var(--blue-dark));border-radius:14px;padding:20px;text-align:center;color:white"><div style="font-size:36px;font-weight:900;line-height:1">17</div><div style="font-size:11px;opacity:0.75;margin-top:4px">شاشة مصممة</div></div>
+    <div style="background:linear-gradient(135deg,var(--purple),#5B21B6);border-radius:14px;padding:20px;text-align:center;color:white"><div style="font-size:36px;font-weight:900;line-height:1">73+</div><div style="font-size:11px;opacity:0.75;margin-top:4px">RESTful API</div></div>
+    <div style="background:linear-gradient(135deg,var(--red),#B91C1C);border-radius:14px;padding:20px;text-align:center;color:white"><div style="font-size:36px;font-weight:900;line-height:1">26</div><div style="font-size:11px;opacity:0.75;margin-top:4px">Agora RTM Event</div></div>
+    <div style="background:linear-gradient(135deg,var(--green),#15803D);border-radius:14px;padding:20px;text-align:center;color:white"><div style="font-size:36px;font-weight:900;line-height:1">14</div><div style="font-size:11px;opacity:0.75;margin-top:4px">Oracle DB Table</div></div>
+  </div>
+</section>
+
+<footer class="doc-footer">
+  <div class="footer-brand">
+    <div class="fb-name">ITQANتقان</div>
+    <div class="fb-desc">وثيقة التصميم • إبراهيم الرعيني • تصميم: إبراهيم الرعيني</div>
+  </div>
+  <div class="footer-stats">
+    <div class="fs"><div class="fv">17</div><div class="fl">شاشة مصممة</div></div>
+    <div class="fs"><div class="fv">73+</div><div class="fl">RESTful API</div></div>
+    <div class="fs"><div class="fv">26</div><div class="fl">Agora RTM Events</div></div>
+    <div class="fs"><div class="fv">14</div><div class="fl">Oracle DB Tables</div></div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+  navLinks.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
